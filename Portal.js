@@ -3,16 +3,18 @@ var PreviewModule = {
 	settings: {
 		userHeight: screen.height,
 		userWidth: screen.width,
-		largeWidth: null;
-		largeHeight: null;
-		smallWidth: null;
-		smallHeight: null;
+		largeWidth: null,
+		largeHeight: null,
+		smallWidth: null.
+		smallHeight: null,
+		defaultHeight: Math.floor(userHeight/1.5),
+		defaultWidth: Math.floor(userWidth/3.7)
 	},
 
 	removePortal: function() {
 		var iFrame = document.getElementById('frame');
 		iFrame.parentNode.removeChild(iframe);
-		$("portal").remove();
+		$("#portal").remove();
 	},
 
 	buildFrame: function() {
@@ -24,7 +26,7 @@ var PreviewModule = {
 	},
 
 	//TAKE IN DIMENSIONS
-	resize: function() {
+	resize: function(h, w) {
 
 	},
 
@@ -33,8 +35,8 @@ var PreviewModule = {
 	},
 
 	createPortal: function() {
-		$('<div/>', {id: 'monster', rel: 'external', position: 'relative'}
-			).appendTo('body');
+		$('<div/>', {id: 'portal', rel: 'external', position: 'relative'}
+		).appendTo('body');
 	}
 
 };
