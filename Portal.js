@@ -9,5 +9,9 @@ var PreviewModule = {
 		smallHeight;
 	},
 
-	removeFrame:
+	removeFrame: function() {
+		var iFrame = document.getElementById('portal');
+		iFrame.parentNode.removeChild(iFrame);
+		$("container").remove();
+	};
 }
