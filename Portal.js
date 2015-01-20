@@ -5,15 +5,10 @@ var PreviewModule = {
 		userWidth: screen.width,
 		largeWidth: null,
 		largeHeight: null,
-<<<<<<< HEAD
 		smallWidth: null,
-		smallHeight: null,
-=======
-		smallWidth: null.
 		smallHeight: null,
 		defaultHeight: Math.floor(userHeight/1.5),
 		defaultWidth: Math.floor(userWidth/3.7)
->>>>>>> FETCH_HEAD
 	},
 
 	removePortal: function() {
@@ -25,7 +20,6 @@ var PreviewModule = {
 	buildFrame: function() {
 		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
 		$("#frame").width(smallWidth).height(smallHeight);
-		$
 
 	},
 
@@ -45,6 +39,25 @@ var PreviewModule = {
 	createPortal: function() {
 		$('<div/>', {id: 'portal', rel: 'external', position: 'relative'}
 		).appendTo('body');
+
+			//If mouse is hovered over link
+			//set onlink to true when mouse enters
+			$("a").mouseenter(function(){
+				onLink = true;
+				//get the url
+			    var url = $(this).attr('href');
+			    //print url
+				console.log(url);
+				source = url;
+			})
+			//set onLink to false when mouse leaves
+			.mouseleave(function(){
+				onLink = false;
+			});
+	},
+
+	init: function() {
+		this.createPortal();
 	}
 
 };
