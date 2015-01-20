@@ -3,19 +3,22 @@ var PreviewModule = {
 	settings: {
 		userHeight: screen.height,
 		userWidth: screen.width,
-		largeWidth: null;
-		largeHeight: null;
-		smallWidth: null;
-		smallHeight: null;
+		largeWidth: null,
+		largeHeight: null,
+		smallWidth: null,
+		smallHeight: null,
 	},
 
 	removePortal: function() {
 		var iFrame = document.getElementById('frame');
 		iFrame.parentNode.removeChild(iframe);
-		$("portal").remove();
+		$("#portal").remove();
 	},
 
 	buildFrame: function() {
+		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
+		$("#frame").width(smallWidth).height(smallHeight);
+		$
 
 	},
 
