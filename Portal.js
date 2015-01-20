@@ -5,10 +5,19 @@ var PreviewModule = {
 		userWidth: screen.width,
 		largeWidth: null,
 		largeHeight: null,
+<<<<<<< HEAD
 		smallWidth: null,
 		smallHeight: null,
 		defaultHeight: Math.floor(userHeight/1.5),
 		defaultWidth: Math.floor(userWidth/3.7)
+=======
+
+		smallWidth: null.
+		smallHeight: null,
+		defaultHeight: Math.floor(userHeight/1.5),
+		defaultWidth: Math.floor(userWidth/3.7)
+
+>>>>>>> FETCH_HEAD
 	},
 
 	removePortal: function() {
