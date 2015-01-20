@@ -1,4 +1,4 @@
-var s,
+var s, source,
 
 PreviewModule = {
 
@@ -21,9 +21,15 @@ PreviewModule = {
 	},
 
 	buildFrame: function() {
-		$("#portal").html("<iframe id = 'frame' src =" + "http://www.theverge.com/2015/1/16/7555793/curved-imac-ultrawide" + "></iframe>");
-		$("#frame").width(s.defaultWidth).height(s.defaultHeight);
-
+		$(function () {
+	  	$(document).keyup(function (e) {
+		  	//console.log(e.which);
+		  	if(e.which == 80 && onLink == true){
+		  		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
+				$("#frame").width(s.defaultWidth).height(s.defaultHeight);
+			}
+		});
+	});
 	},
 
 	buildButtons: function() {
