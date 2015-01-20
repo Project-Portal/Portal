@@ -1,0 +1,21 @@
+.box{
+	position: absolute;
+	z-index: 2000000000;
+	float: left;
+	background-color: "white";
+}
+
+.scroller{
+	position: absolute;
+	z-index: -2;
+	border-radius: 25px;
+	background-color: #C4C7B9;
+
+}
+
+.img {
+	height: 15px;
+	width: 15px;
+	margin-left: auto;
+	margin-top: auto;
+}
