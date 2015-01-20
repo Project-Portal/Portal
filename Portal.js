@@ -9,10 +9,10 @@ var PreviewModule = {
 		smallHeight: null;
 	},
 
-	removeFrame: function() {
-		var iFrame = document.getElementById('portal');
-		iFrame.parentNode.removeChild(iFrame);
-		$("container").remove();
+	removePortal: function() {
+		var iFrame = document.getElementById('frame');
+		iFrame.parentNode.removeChild(iframe);
+		$("portal").remove();
 	},
 
 	buildFrame: function() {
@@ -30,6 +30,11 @@ var PreviewModule = {
 
 	rotate: function() {
 
+	},
+
+	createPortal: function() {
+		$('<div/>', {id: 'monster', rel: 'external', position: 'relative'}
+			).appendTo('body');
 	}
 
 };
