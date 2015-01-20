@@ -5,8 +5,15 @@ var PreviewModule = {
 		userWidth: screen.width,
 		largeWidth: null,
 		largeHeight: null,
+<<<<<<< HEAD
 		smallWidth: null,
 		smallHeight: null,
+=======
+		smallWidth: null.
+		smallHeight: null,
+		defaultHeight: Math.floor(userHeight/1.5),
+		defaultWidth: Math.floor(userWidth/3.7)
+>>>>>>> FETCH_HEAD
 	},
 
 	removePortal: function() {
@@ -27,7 +34,7 @@ var PreviewModule = {
 	},
 
 	//TAKE IN DIMENSIONS
-	resize: function() {
+	resize: function(h, w) {
 
 	},
 
@@ -36,8 +43,8 @@ var PreviewModule = {
 	},
 
 	createPortal: function() {
-		$('<div/>', {id: 'monster', rel: 'external', position: 'relative'}
-			).appendTo('body');
+		$('<div/>', {id: 'portal', rel: 'external', position: 'relative'}
+		).appendTo('body');
 	}
 
 };
