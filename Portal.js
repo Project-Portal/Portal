@@ -2,7 +2,7 @@ var PreviewModule = {
 
 	settings: {
 		userHeight: screen.height,
-		userWidth: screen.userWidth,
+		userWidth: screen.width,
 		largeWidth;
 		largeHeight;
 		smallWidth;
