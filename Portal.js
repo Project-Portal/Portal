@@ -3,10 +3,10 @@ var PreviewModule = {
 	settings: {
 		userHeight: screen.height,
 		userWidth: screen.width,
-		largeWidth;
-		largeHeight;
-		smallWidth;
-		smallHeight;
+		largeWidth: null;
+		largeHeight: null;
+		smallWidth: null;
+		smallHeight: null;
 	},
 
 	removeFrame: function() {
