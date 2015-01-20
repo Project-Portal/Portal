@@ -22,14 +22,14 @@ PreviewModule = {
 
 	buildFrame: function() {
 		$(function () {
-	  	$(document).keyup(function (e) {
-		  	//console.log(e.which);
-		  	if(e.which == 80 && onLink == true){
-		  		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
-				$("#frame").width(s.defaultWidth).height(s.defaultHeight);
-			}
+		  	$(document).keyup(function (e) {
+			  	//console.log(e.which);
+			  	if(e.which == 80 && onLink == true){
+			  		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
+					$("#frame").width(s.defaultWidth).height(s.defaultHeight);
+				}
+			});
 		});
-	});
 	},
 
 	buildButtons: function() {
@@ -48,10 +48,7 @@ PreviewModule = {
 	createPortal: function() {
 		$('<div/>', {id: 'portal', rel: 'external', position: 'relative'}
 		).appendTo('body');
-
 			$("#portal").width(s.defaultWidth).height(s.defaultHeight);
-
-
 			//If mouse is hovered over link
 			//set onlink to true when mouse enters
 			$("a").mouseenter(function(){
@@ -66,7 +63,6 @@ PreviewModule = {
 			.mouseleave(function(){
 				onLink = false;
 			});
-
 	},
 
 	init: function() {
