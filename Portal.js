@@ -1,4 +1,6 @@
-var PreviewModule = {
+var s,
+
+PreviewModule = {
 
 	settings: {
 		userHeight: screen.height,
@@ -7,8 +9,8 @@ var PreviewModule = {
 		largeHeight: null,
 		smallWidth: null,
 		smallHeight: null,
-		defaultHeight: Math.floor(userHeight/1.5),
-		defaultWidth: Math.floor(userWidth/3.7)
+		defaultHeight: Math.floor(screen.height/1.5),
+		defaultWidth: Math.floor(screen.width/3.7)
 
 	},
 
@@ -19,8 +21,8 @@ var PreviewModule = {
 	},
 
 	buildFrame: function() {
-		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
-		$("#frame").width(smallWidth).height(smallHeight);
+		$("#portal").html("<iframe id = 'frame' src =" + "http://www.theverge.com/2015/1/16/7555793/curved-imac-ultrawide" + "></iframe>");
+		$("#frame").width(s.defaultWidth).height(s.defaultHeight);
 
 	},
 
@@ -41,6 +43,9 @@ var PreviewModule = {
 		$('<div/>', {id: 'portal', rel: 'external', position: 'relative'}
 		).appendTo('body');
 
+			$("#portal").width(s.defaultWidth).height(s.defaultHeight);
+
+
 			//If mouse is hovered over link
 			//set onlink to true when mouse enters
 			$("a").mouseenter(function(){
@@ -55,10 +60,13 @@ var PreviewModule = {
 			.mouseleave(function(){
 				onLink = false;
 			});
+
 	},
 
 	init: function() {
+		s = this.settings;
 		this.createPortal();
+		this.buildFrame();
 	}
 
 };
