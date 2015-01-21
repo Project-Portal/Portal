@@ -1,6 +1,6 @@
 //source--> the URL of the link
 //s --> settings
-
+var mouse = {x:0, y:0};
 var s, source,
 
 PreviewModule = {
@@ -27,18 +27,7 @@ PreviewModule = {
 
 	//call to build the iframe
 	buildFrame: function() {
-		
-		$(function () {
-		  	$(document).keyup(function (e) {
-			  	//console.log(e.which);
-			  	if(e.which == 80 && onLink == true){
-			  		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
-					$("#frame").width(s.defaultWidth).height(s.defaultHeight);
-					$("#portal").css("background-color","black");
-				}
-			});
-		});
-
+		PreviewModule.putPortalAtCursor();
 	},
 
 	buildButtons: function() {
@@ -59,9 +48,10 @@ PreviewModule = {
 		$('<div/>', {id: 'portal', rel: 'external', position: 'absolute'}
 		).appendTo('body');
 			$("#portal").width(s.defaultWidth).height(s.defaultHeight);
+			$("#portal").css("z-index", "2000000000");
+			
 			//If mouse is hovered over link
 			//set onlink to true when mouse enters
-			
 			$("a").mouseenter(function(){
 				onLink = true;
 				//get the url
@@ -79,8 +69,40 @@ PreviewModule = {
 	//initialize function
 	init: function() {
 		s = this.settings;
+		this.followMouse();
 		this.createPortal();
 		this.buildFrame();
-	}
+		//this.putPortalAtCursor();
+	},
 
+	followMouse: function() {
+		$(document).on('mousemove', function(e){
+			console.log("im moving");
+    		mouse.x = e.pageX;
+    		mouse.y = e.pageY;
+		});
+	},
+
+	//creates the portal at the current location of the cursor
+	putPortalAtCursor: function() {
+		$(document).keypress(function(event){
+			if(event.which == 112 && onLink){
+	        	var x = mouse.x + 'px';
+	        	var y = mouse.y + 'px';
+	 			//alert(x + " " + y);
+
+	 			$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
+				$("#frame").width(s.defaultWidth).height(s.defaultHeight);
+				$("#portal").css("background-color","black");
+
+	        	var div = $('#portal').css({
+	            	"position": "absolute",                    
+	            	"left": x,
+	            	"top": y
+	        	});
+
+	        	$(document.body).append(div);  
+        	}    
+    	});
+	}
 };
