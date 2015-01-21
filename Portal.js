@@ -72,7 +72,6 @@ PreviewModule = {
 		this.followMouse();
 		this.createPortal();
 		this.buildFrame();
-		//this.putPortalAtCursor();
 	},
 
 	followMouse: function() {
