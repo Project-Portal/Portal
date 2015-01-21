@@ -1,7 +1,11 @@
+//source--> the URL of the link
+//s --> settings
+
 var s, source,
 
 PreviewModule = {
 
+	//various variables we may want to retrieve at any given time
 	settings: {
 		userHeight: screen.height,
 		userWidth: screen.width,
