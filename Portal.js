@@ -14,12 +14,14 @@ PreviewModule = {
 
 	},
 
+	//Remove portal when you click anywhere outside the portal
 	removePortal: function() {
 		var iFrame = document.getElementById('frame');
 		iFrame.parentNode.removeChild(iframe);
 		$("#portal").remove();
 	},
 
+	//call to build the iframe
 	buildFrame: function() {
 		$(function () {
 		  	$(document).keyup(function (e) {
@@ -45,6 +47,7 @@ PreviewModule = {
 
 	},
 
+	//call to build the the Portal (div holding the iframe)
 	createPortal: function() {
 		$('<div/>', {id: 'portal', rel: 'external', position: 'relative'}
 		).appendTo('body');
@@ -65,6 +68,7 @@ PreviewModule = {
 			});
 	},
 
+	//initialize function
 	init: function() {
 		s = this.settings;
 		this.createPortal();
