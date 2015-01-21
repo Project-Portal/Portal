@@ -23,15 +23,18 @@ PreviewModule = {
 
 	//call to build the iframe
 	buildFrame: function() {
+		
 		$(function () {
 		  	$(document).keyup(function (e) {
 			  	//console.log(e.which);
 			  	if(e.which == 80 && onLink == true){
 			  		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
 					$("#frame").width(s.defaultWidth).height(s.defaultHeight);
+					$("#portal").css("background-color","black");
 				}
 			});
 		});
+
 	},
 
 	buildButtons: function() {
@@ -49,11 +52,12 @@ PreviewModule = {
 
 	//call to build the the Portal (div holding the iframe)
 	createPortal: function() {
-		$('<div/>', {id: 'portal', rel: 'external', position: 'relative'}
+		$('<div/>', {id: 'portal', rel: 'external', position: 'absolute'}
 		).appendTo('body');
 			$("#portal").width(s.defaultWidth).height(s.defaultHeight);
 			//If mouse is hovered over link
 			//set onlink to true when mouse enters
+			
 			$("a").mouseenter(function(){
 				onLink = true;
 				//get the url
@@ -65,7 +69,7 @@ PreviewModule = {
 			//set onLink to false when mouse leaves
 			.mouseleave(function(){
 				onLink = false;
-			});
+			}); 
 	},
 
 	//initialize function

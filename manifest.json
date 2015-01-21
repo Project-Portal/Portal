@@ -24,8 +24,8 @@
 					"http://*/*",
 					"https://*/*"
 				],
-				"css": ["jquery.css"],
-	      		"js": [ "jquery.min.js", "jquery-ui.js",  "Portal.js", "contentscript.js", "run.js"],
+				"css": [],
+	      		"js": [ "jquery.min.js", "Portal.js", "contentscript.js", "run.js"],
 				"run_at": "document_idle",
 				"all_frames": false
 			}
