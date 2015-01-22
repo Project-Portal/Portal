@@ -4,7 +4,6 @@ var mouse = {x:0, y:0};
 var s, source,
 
 PreviewModule = {
-
 	//various variables we may want to retrieve at any given time
 	settings: {
 		userHeight: screen.height,
@@ -72,6 +71,7 @@ PreviewModule = {
 		this.followMouse();
 		this.createPortal();
 		this.buildFrame();
+		this.growListener();
 	},
 
 	followMouse: function() {
@@ -79,6 +79,25 @@ PreviewModule = {
 			console.log("im moving");
     		mouse.x = e.pageX;
     		mouse.y = e.pageY;
+		});
+	},
+
+	growPortal: function() {
+		curHeight = $("#portal").height();
+		curTop = $("#portal").offset().top;
+		newHeight = 200;
+		newMargin = curTop - (newHeight - curHeight)/2;
+		if (newMargin < 0){
+			newMargin = 0;
+		}
+		$("#portal").animate({height: newHeight + "px", marginTop: newMargin + 'px'});
+	},
+
+	growListener: function() {
+		$(document).keypress(function(event){
+			if(event.which == 103){
+				this.growPortal();	
+			}
 		});
 	},
 
