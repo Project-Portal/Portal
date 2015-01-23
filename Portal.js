@@ -2,7 +2,7 @@
 //s --> settings
 
 var mouse = {x:0, y:0};
-var s, source, portalIsShowing,
+var s, source, portalIsShowing, onLink,
 
 PreviewModule = {
 	//various variables we may want to retrieve at any given time
@@ -44,18 +44,8 @@ PreviewModule = {
 
 	},
 
-	//call to build the the Portal (div holding the iframe)
-	createPortal: function() {
-		portalIsShowing = true;
-		$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: '0px', height: '0px'}
-		).appendTo('body');
-			$("#portal").width(s.defaultWidth).height(s.defaultHeight);
-			$("#portal").css("z-index", "2000000000");
-			$('#portal').css({ "box-shadow": "10px 10px 5px #888888"});
-			
-			//If mouse is hovered over link
-			//set onlink to true when mouse enters
-			$("a").mouseenter(function(){
+	isOverLink: function() {
+		$("a").mouseenter(function(){
 				onLink = true;
 				//get the url
 			    var url = $(this).attr('href');
@@ -67,8 +57,23 @@ PreviewModule = {
 			.mouseleave(function(){
 				onLink = false;
 			}); 
+		},
 
-			document.addEventListener("click", function(e){
+	//initialize function
+	init: function() {
+		s = this.settings;
+		this.followMouse();
+		this.isOverLink();
+		//listen for 'p' keypress
+		$(document).keypress(function(event){
+			if(event.which == 112 && onLink){
+				console.log("pressed p");
+	        	PreviewModule.putPortalAtCursor(); 
+        	}    
+    	});
+
+		//listen for when user clicks off portal to remove
+    	document.addEventListener("click", function(e){
 				var toClose = e.target.id != "portal" && portalIsShowing;
 				if (toClose){
 					console.log(e.target.id);
@@ -79,19 +84,8 @@ PreviewModule = {
 					//do nothing
 				}
 			});
-	},
-
-	//initialize function
-	init: function() {
-		s = this.settings;
-		$(document).keypress(function(event){
-			if(event.which == 112 && onLink){
-	        	PreviewModule.putPortalAtCursor(); 
-        	}    
-    	});
-		this.followMouse();
-		this.createPortal();
-		this.buildFrame();
+		//this.createPortal();
+		//this.buildFrame();
 		this.growListener();
 	},
 
@@ -124,20 +118,26 @@ PreviewModule = {
 
 	//creates the portal at the current location of the cursor
 	putPortalAtCursor: function() {
+		console.log("Put portal at cursor!!");
 	    var x = mouse.x + 'px';
 	    var y = mouse.y + 'px';
 	 			//alert(x + " " + y);
-
-	 	$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
+	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: 0,
+	 		 height: 0}
+		).appendTo('body');
+		$("#portal").css("background-color","white");
+		console.log("The source!!: " + source);
+		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
 		$("#frame").width(s.defaultWidth).height(s.defaultHeight);
-		$("#portal").css("background-color","black");
+		$('#portal').css({"box-shadow": "10px 10px 5px #888888"});
 
-	    var div = $('#portal').css({
+		$('#portal').css({
 	            "position": "absolute",                    
 	            "left": x,
-	            "top": y
+	            "top": y,
+	            "z-index": "2000000000",
+	            "width": s.defaultWidth + 'px',
+	            "height": s.defaultHeight + 'px'
 	        });
-
-	    $(document.body).append(div);     
 	}
 };
