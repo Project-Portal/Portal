@@ -44,7 +44,7 @@ PreviewModule = {
 
 	//call to build the the Portal (div holding the iframe)
 	createPortal: function() {
-		$('<div/>', {id: 'portal', rel: 'external', position: 'absolute'}
+		$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: '0px', height: '0px'}
 		).appendTo('body');
 			$("#portal").width(s.defaultWidth).height(s.defaultHeight);
 			$("#portal").css("z-index", "2000000000");
