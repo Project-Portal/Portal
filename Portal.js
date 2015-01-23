@@ -59,6 +59,7 @@ PreviewModule = {
 		s = this.settings;
 		this.followMouse();
 		this.isOverLink();
+		
 		//listen for 'p' keypress
 		$(document).keypress(function(event){
 			if(event.which == 112 && onLink){
@@ -131,5 +132,6 @@ PreviewModule = {
 	            "width": s.defaultWidth + 'px',
 	            "height": s.defaultHeight + 'px'
 	        });
+		portalIsShowing = true;
 	}
 };
