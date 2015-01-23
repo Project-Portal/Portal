@@ -48,6 +48,7 @@ PreviewModule = {
 		).appendTo('body');
 			$("#portal").width(s.defaultWidth).height(s.defaultHeight);
 			$("#portal").css("z-index", "2000000000");
+			$('#portal').css({ "box-shadow": "10px 10px 5px #888888"});
 			
 			//If mouse is hovered over link
 			//set onlink to true when mouse enters
