@@ -9,11 +9,11 @@ PreviewModule = {
 	settings: {
 		userHeight: screen.height,
 		userWidth: screen.width,
-		largeWidth: null,
-		largeHeight: null,
 		smallWidth: null,
 		smallHeight: null,
-		defaultHeight: Math.floor(screen.height/1.5),
+		largeHeight: Math.floor(screen.height/1.3), 
+		largeWidth: Math.floor(screen.width/2.5),
+		defaultHeight: Math.floor(screen.height/1.5), //PORTAL
 		defaultWidth: Math.floor(screen.width/3.7)
 
 	},
@@ -80,8 +80,13 @@ PreviewModule = {
 					//do nothing
 				}
 			});
-
-		this.growListener();
+    	//listen for "g" keypress to grow portal
+		$(document).keypress(function(event){
+			if(event.which == 103){
+				console.log("pressed p");
+				PreviewModule.growPortal();	
+			}
+		});
 	},
 
 	followMouse: function() {
@@ -92,23 +97,24 @@ PreviewModule = {
 		});
 	},
 
+	//http://css-tricks.com/examples/jQueryStop/
 	growPortal: function() {
-		curHeight = $("#portal").height();
-		curTop = $("#portal").offset().top;
-		newHeight = 200;
-		newMargin = curTop - (newHeight - curHeight)/2;
-		if (newMargin < 0){
-			newMargin = 0;
-		}
-		$("#portal").animate({height: newHeight + "px", marginTop: newMargin + 'px'});
-	},
-
-	growListener: function() {
-		$(document).keypress(function(event){
-			if(event.which == 103){
-				this.growPortal();	
-			}
-		});
+		//h = $('#portal').css('height');
+		console.log("PORTAL" + $('#portal').css('width'));
+		console.log("FRAME" + $('#frame').css('width'));
+		console.log("DEFAULT" + s.defaultWidth);
+		$("#portal").animate({
+			width: s.largeWidth,
+			height: s.largeHeight,
+			opacity: 1,
+			left: ("+=50"),
+		}, 300);
+		$("#frame").animate({
+			width: s.largeWidth,
+			height: s.largeHeight,
+			opacity: 1,
+			left: ("+=50"),
+		}, 300);
 	},
 
 	//creates the portal at the current location of the cursor
