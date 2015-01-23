@@ -114,9 +114,11 @@ PreviewModule = {
 	//creates the portal at the current location of the cursor
 	putPortalAtCursor: function() {
 		console.log("Put portal at cursor!!");
+		//get mouse position
 	    var x = mouse.x + 'px';
 	    var y = mouse.y + 'px';
 
+	    //create the portal div and the frame iFrame
 	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: 0,height: 0}).appendTo('body');
 		$("#portal").css("background-color","white");
 		console.log("The source!!: " + source);
@@ -125,6 +127,7 @@ PreviewModule = {
 		$('#portal').css({"box-shadow": "10px 10px 5px #888888"});
 		//$('#portal').makeResizable();
 
+		//Move the portal to the mouse position
 		$('#portal').css({
 	            "position": "absolute",                    
 	            "left": x,
@@ -133,6 +136,7 @@ PreviewModule = {
 	            "width": s.defaultWidth + 'px',
 	            "height": s.defaultHeight + 'px'
 	        });
+		//Set the variable
 		portalIsShowing = true;
 	}
 };
