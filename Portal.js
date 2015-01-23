@@ -59,7 +59,7 @@ PreviewModule = {
 		s = this.settings;
 		this.followMouse();
 		this.isOverLink();
-		
+
 		//listen for 'p' keypress
 		$(document).keypress(function(event){
 			if(event.which == 112 && onLink){
@@ -123,6 +123,7 @@ PreviewModule = {
 		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
 		$("#frame").width(s.defaultWidth).height(s.defaultHeight);
 		$('#portal').css({"box-shadow": "10px 10px 5px #888888"});
+		//$('#portal').makeResizable();
 
 		$('#portal').css({
 	            "position": "absolute",                    
