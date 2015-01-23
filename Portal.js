@@ -107,13 +107,13 @@ PreviewModule = {
 			width: s.largeWidth,
 			height: s.largeHeight,
 			opacity: 1,
-			left: ("+=50"),
+			//left: ("+=50"),
 		}, 300);
 		$("#frame").animate({
 			width: s.largeWidth,
 			height: s.largeHeight,
 			opacity: 1,
-			left: ("+=50"),
+			//left: ("+=50"),
 		}, 300);
 	},
 
