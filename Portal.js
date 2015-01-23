@@ -1,7 +1,8 @@
 //source--> the URL of the link
 //s --> settings
+
 var mouse = {x:0, y:0};
-var s, source,
+var s, source, portalIsShowing,
 
 PreviewModule = {
 	//various variables we may want to retrieve at any given time
@@ -20,8 +21,9 @@ PreviewModule = {
 	//Remove portal when you click anywhere outside the portal
 	removePortal: function() {
 		var iFrame = document.getElementById('frame');
-		iFrame.parentNode.removeChild(iframe);
+		iFrame.parentNode.removeChild(iFrame);
 		$("#portal").remove();
+		portalIsShowing = false;
 	},
 
 	//call to build the iframe
@@ -44,6 +46,7 @@ PreviewModule = {
 
 	//call to build the the Portal (div holding the iframe)
 	createPortal: function() {
+		portalIsShowing = true;
 		$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: '0px', height: '0px'}
 		).appendTo('body');
 			$("#portal").width(s.defaultWidth).height(s.defaultHeight);
@@ -64,11 +67,28 @@ PreviewModule = {
 			.mouseleave(function(){
 				onLink = false;
 			}); 
+
+			document.addEventListener("click", function(e){
+				var toClose = e.target.id != "portal" && portalIsShowing;
+				if (toClose){
+					console.log(e.target.id);
+					console.log("Removed Portal!!");
+					PreviewModule.removePortal();
+				}
+				else {
+					//do nothing
+				}
+			});
 	},
 
 	//initialize function
 	init: function() {
 		s = this.settings;
+		$(document).keypress(function(event){
+			if(event.which == 112 && onLink){
+	        	PreviewModule.putPortalAtCursor(); 
+        	}    
+    	});
 		this.followMouse();
 		this.createPortal();
 		this.buildFrame();
@@ -104,24 +124,20 @@ PreviewModule = {
 
 	//creates the portal at the current location of the cursor
 	putPortalAtCursor: function() {
-		$(document).keypress(function(event){
-			if(event.which == 112 && onLink){
-	        	var x = mouse.x + 'px';
-	        	var y = mouse.y + 'px';
+	    var x = mouse.x + 'px';
+	    var y = mouse.y + 'px';
 	 			//alert(x + " " + y);
 
-	 			$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
-				$("#frame").width(s.defaultWidth).height(s.defaultHeight);
-				$("#portal").css("background-color","black");
+	 	$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
+		$("#frame").width(s.defaultWidth).height(s.defaultHeight);
+		$("#portal").css("background-color","black");
 
-	        	var div = $('#portal').css({
-	            	"position": "absolute",                    
-	            	"left": x,
-	            	"top": y
-	        	});
+	    var div = $('#portal').css({
+	            "position": "absolute",                    
+	            "left": x,
+	            "top": y
+	        });
 
-	        	$(document.body).append(div);  
-        	}    
-    	});
+	    $(document.body).append(div);     
 	}
 };
