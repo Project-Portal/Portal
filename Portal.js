@@ -26,11 +26,6 @@ PreviewModule = {
 		portalIsShowing = false;
 	},
 
-	//call to build the iframe
-	buildFrame: function() {
-		PreviewModule.putPortalAtCursor();
-	},
-
 	buildButtons: function() {
 
 	},
@@ -84,8 +79,7 @@ PreviewModule = {
 					//do nothing
 				}
 			});
-		//this.createPortal();
-		//this.buildFrame();
+
 		this.growListener();
 	},
 
@@ -121,10 +115,8 @@ PreviewModule = {
 		console.log("Put portal at cursor!!");
 	    var x = mouse.x + 'px';
 	    var y = mouse.y + 'px';
-	 			//alert(x + " " + y);
-	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: 0,
-	 		 height: 0}
-		).appendTo('body');
+
+	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: 0,height: 0}).appendTo('body');
 		$("#portal").css("background-color","white");
 		console.log("The source!!: " + source);
 		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
