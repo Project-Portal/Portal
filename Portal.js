@@ -90,7 +90,6 @@ PreviewModule = {
 
 	//http://css-tricks.com/examples/jQueryStop/
 	resizePortal: function() {
-		//h = $('#portal').css('height');
 		console.log("PORTAL" + $('#portal').css('width'));
 		console.log("FRAME" + $('#frame').css('width'));
 		console.log("DEFAULT" + s.defaultWidth);
