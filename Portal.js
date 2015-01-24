@@ -119,10 +119,11 @@ PreviewModule = {
 	    	position: "absolute",
 	    	height: '40px',
 	    	width: s.defaultWidth + 'px',
-	    	zindex: "2000000001"
+	    	zindex: "2000000001",
 	    });
 
 	    topDiv.css("background-color", "#DDDDDD");
+	    topDiv.css({ opacity: 0.5 });
 
 	    //create the portal div and the frame iFrame
 	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: 0,height: 0}).appendTo('body');
