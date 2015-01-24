@@ -75,7 +75,7 @@ PreviewModule = {
 		$(document).keypress(function(event){
 			if(event.which == 103){
 				console.log("pressed p");
-				PreviewModule.growPortal();	
+				PreviewModule.resizePortal();	
 			}
 		});
 	},
@@ -89,7 +89,7 @@ PreviewModule = {
 	},
 
 	//http://css-tricks.com/examples/jQueryStop/
-	growPortal: function() {
+	resizePortal: function() {
 		//h = $('#portal').css('height');
 		console.log("PORTAL" + $('#portal').css('width'));
 		console.log("FRAME" + $('#frame').css('width'));
