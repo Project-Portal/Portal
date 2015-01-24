@@ -2,7 +2,7 @@
 //s --> settings
 
 var mouse = {x:0, y:0};
-var s, source, portalIsShowing, onLink,
+var s, source, portalIsShowing, onLink, $topDiv,
 
 PreviewModule = {
 	//various variables we may want to retrieve at any given time
@@ -114,6 +114,16 @@ PreviewModule = {
 		//get mouse position
 	    var x = mouse.x + 'px';
 	    var y = mouse.y + 'px';
+	    topDiv = $('<div>', {
+	    	id: "topDiv",
+	    	rel: "external",
+	    	position: "absolute",
+	    	height: '40px',
+	    	width: s.defaultWidth + 'px',
+	    	zindex: "2000000001"
+	    });
+
+	    topDiv.css("background-color", "#DDDDDD");
 
 	    //create the portal div and the frame iFrame
 	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: 0,height: 0}).appendTo('body');
@@ -133,6 +143,7 @@ PreviewModule = {
 	            "width": s.defaultWidth + 'px',
 	            "height": s.defaultHeight + 'px'
 	        });
+		$('#portal').prepend(topDiv);
 		//Set the variable
 		portalIsShowing = true;
 	}
