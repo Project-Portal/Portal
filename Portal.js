@@ -75,7 +75,7 @@ PreviewModule = {
 		$(document).keypress(function(event){
 			if(event.which == 103){
 				console.log("pressed p");
-				PreviewModule.resizePortal();	
+				PreviewModule.resizePortal(s.largeWidth,s.largeHeight);	
 			}
 		});
 	},
@@ -89,19 +89,19 @@ PreviewModule = {
 	},
 
 	//http://css-tricks.com/examples/jQueryStop/
-	resizePortal: function() {
-		console.log("PORTAL" + $('#portal').css('width'));
-		console.log("FRAME" + $('#frame').css('width'));
-		console.log("DEFAULT" + s.defaultWidth);
+	resizePortal: function(w, h) {
+		//console.log("PORTAL" + $('#portal').css('width'));
+		//console.log("FRAME" + $('#frame').css('width'));
+		//console.log("DEFAULT" + s.defaultWidth);
 		$("#portal").animate({
-			width: s.largeWidth,
-			height: s.largeHeight,
+			width: w,
+			height: h,
 			opacity: 1,
 			//left: ("+=50"),
 		}, 300);
 		$("#frame").animate({
-			width: s.largeWidth,
-			height: s.largeHeight,
+			width: w,
+			height: h,
 			opacity: 1,
 			//left: ("+=50"),
 		}, 300);
@@ -129,7 +129,7 @@ PreviewModule = {
 		$("#portal").css("background-color","white");
 		console.log("The source!!: " + source);
 		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
-		$("#frame").width(s.defaultWidth).height(s.defaultHeight);
+		$("#frame").width(0).height(0);
 		$('#portal').css({"box-shadow": "10px 10px 5px #888888"});
 		//$('#portal').makeResizable();
 
@@ -139,10 +139,11 @@ PreviewModule = {
 	            "left": x,
 	            "top": y,
 	            "z-index": "2000000000",
-	            "width": s.defaultWidth + 'px',
-	            "height": s.defaultHeight + 'px'
+	            "width": 0 + 'px',
+	            "height": 0 + 'px'
 	        });
 		$('#portal').prepend(topDiv);
+		PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);
 		//Set the variable
 		portalIsShowing = true;
 	}
