@@ -26,15 +26,6 @@ PreviewModule = {
 		portalIsShowing = false;
 	},
 
-	buildButtons: function() {
-
-	},
-
-	//TAKE IN DIMENSIONS
-	resize: function(h, w) {
-
-	},
-
 	rotate: function() {
 
 	},
