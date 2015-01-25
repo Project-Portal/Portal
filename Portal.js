@@ -107,32 +107,52 @@ PreviewModule = {
 		}, 300);
 	},
 
+	showBar: function() {
+		topDiv.animate({
+			height: 40,
+			opacity: 1,
+		}, 300);
+	},
+
+	hideBar: function() {
+		topDiv.animate({
+			height: 0,
+			opacity: 1,
+		}, 300);
+	},
+
+	listenForPortalHover: function(){
+		$('#portal').mouseover(function() {
+			PreviewModule.showBar();
+		}).mouseout(function(){
+			PreviewModule.hideBar();
+		});
+	},
+
 	//creates the portal at the current location of the cursor
 	putPortalAtCursor: function() {
-		console.log("Put portal at cursor!!");
 		//get mouse position
 	    var x = mouse.x + 'px';
 	    var y = mouse.y + 'px';
+
+	    //top bar that appears above the portal
 	    topDiv = $('<div>', {
 	    	id: "topDiv",
 	    	rel: "external",
 	    	position: "absolute",
-	    	height: '40px',
+	    	height: '0px',
 	    	width: s.defaultWidth + 'px',
 	    	zindex: "2000000001",
 	    });
 
 	    topDiv.css("background-color", "#DDDDDD");
-	    topDiv.css({ opacity: 0.5 });
 
 	    //create the portal div and the frame iFrame
 	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: 0,height: 0}).appendTo('body');
 		$("#portal").css("background-color","white");
-		console.log("The source!!: " + source);
 		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
 		$("#frame").width(0).height(0);
-		$('#portal').css({"box-shadow": "10px 10px 5px #888888"});
-		//$('#portal').makeResizable();
+		$('#frame').css({"box-shadow": "10px 10px 5px #888888"});
 
 		//Move the portal to the mouse position
 		$('#portal').css({
@@ -145,6 +165,7 @@ PreviewModule = {
 	        });
 		$('#portal').prepend(topDiv);
 		PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);
+		PreviewModule.listenForPortalHover();
 		//Set the variable
 		portalIsShowing = true;
 	}
