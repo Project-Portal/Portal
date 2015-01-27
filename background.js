@@ -34,7 +34,8 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     ["blocking", "requestHeaders"]
 );
 */
-
+/*
+//****** OTHER WAY!!!! *********
   // The 'reqestFilter' parameter allows you to only listen for
   // certain requests. Chrome 17 requires that, at the very least,
   // it defines the URLs you wish to subscribe to. In the general
@@ -75,6 +76,7 @@ var requestFilter = {
     blockingResponse.requestHeaders = headers;
     return blockingResponse;
   };
+  */
  
 chrome.webRequest.onBeforeSendHeaders.addListener( handler, requestFilter, extraInfoSpec );
 
@@ -83,6 +85,7 @@ function onMessage(request, sender, sendResponse) {
     chrome.tabs.query({active: true, currentWindow: true}, function(arrayOfTabs) {
      activeTab = arrayOfTabs[0].url;
   });
+}
 
 
     
