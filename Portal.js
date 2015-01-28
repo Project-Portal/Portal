@@ -153,14 +153,14 @@ PreviewModule = {
 	showBar: function() {
 		topDiv.animate({
 			height: 40,
-			opacity: 1,
+			opacity: 1
 		}, 300);
 	},
 
 	hideBar: function() {
 		topDiv.animate({
 			height: 0,
-			opacity: 1,
+			opacity: 1
 		}, 300);
 	},
 
