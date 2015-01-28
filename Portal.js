@@ -115,6 +115,7 @@ PreviewModule = {
 		}, 300);
 	},
 
+<<<<<<< HEAD
 	/*ANIMATEDrotatePortal: function() {
 		h = $('#frame').width();
 		w = $('#frame').height();
@@ -154,6 +155,8 @@ PreviewModule = {
 		PreviewModule.resizePortal(w,h);
 	},
 
+=======
+>>>>>>> FETCH_HEAD
 	showBar: function() {
 		topDiv.animate({
 			height: 40,
@@ -212,12 +215,15 @@ PreviewModule = {
 	        });
 		$('#portal').prepend(topDiv);
 		PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);
+<<<<<<< HEAD
 
 		//Enable Dragging of Portal
 		$("#portal").draggable({
 			iframeFix: true
 		});
 
+=======
+>>>>>>> FETCH_HEAD
 		PreviewModule.listenForPortalHover();
 		//Set the variable
 		portalIsShowing = true;
