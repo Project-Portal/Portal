@@ -145,8 +145,8 @@ PreviewModule = {
 	},*/
 
 	rotatePortal: function(){
-		h = $('#frame').width();
-		w = $('#frame').height();
+		h = $('#portal').width();
+		w = $('#portal').height();
 		PreviewModule.resizePortal(w,h);
 	},
 
