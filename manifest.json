@@ -25,11 +25,7 @@
 					"https://*/*"
 				],
 				"css": [],
-<<<<<<< HEAD
 	      		"js": [ "jquery.min.js", "jquery-ui.min.js", "jquery-ui.js", "Portal.js", "contentscript.js", "run.js"],
-=======
-	      		"js": [ "jquery.min.js", "jquery-ui.js", "Portal.js", "contentscript.js", "run.js"],
->>>>>>> FETCH_HEAD
 				"run_at": "document_idle",
 				"all_frames": false
 			}
