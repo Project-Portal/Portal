@@ -2,7 +2,7 @@
 //s --> settings
 
 var mouse = {x:0, y:0};
-var s, source, portalIsShowing, onLink, $topDiv,
+var s, source, portalIsShowing, barShowing, onLink, $topDiv,
 
 PreviewModule = {
 	//various variables we may want to retrieve at any given time
@@ -100,49 +100,16 @@ PreviewModule = {
 		$("#portal").animate({
 			width: w,
 			height: h,
-			opacity: 1,
+			opacity: 1
 			//left: ("+=50"),
 		}, 300);
 		$("#frame").animate({
 			width: w,
 			height: h,
-			opacity: 1,
+			opacity: 1
 			//left: ("+=50"),
 		}, 300);
 	},
-
-	/*ANIMATEDrotatePortal: function() {
-		h = $('#frame').width();
-		w = $('#frame').height();
-		$('#portal').animate({  borderSpacing: 90 }, {
-		    step: function(now,fx) {
-		      $(this).css('-webkit-transform','rotate('+now+'deg)'); 
-		      $(this).css('-moz-transform','rotate('+now+'deg)');
-		      $(this).css('transform','rotate('+now+'deg)');
-		    },
-		    duration:'slow'
-		},'linear');
-
-		$('#frame').animate({width: w, height: h, opacity: 1}, {  borderSpacing: 90 }, {
-		    step: function(now,fx) {
-		      $(this).css('-webkit-transform','rotate('+now+'deg)'); 
-		      $(this).css('-moz-transform','rotate('+now+'deg)');
-		      $(this).css('transform','rotate('+now+'deg)');
-
-		    },
-		    duration:'slow'
-		},'linear');
-
-
-		h = $('#frame').width();
-		w = $('#frame').height();
-		$("#frame").animate({
-			width: w,
-			height: h,
-			opacity: 1,
-			//left: ("+=50"),
-		}, 300);
-	},*/
 
 	rotatePortal: function(){
 		h = $('#portal').width();
@@ -151,26 +118,26 @@ PreviewModule = {
 	},
 
 	showBar: function() {
+        barShowing = true;
 		topDiv.animate({
-			height: 40,
-			opacity: 1
-		}, 300);
+			height: 40
+		}, 250);
 	},
 
 	hideBar: function() {
+        barShowing = false;
 		topDiv.animate({
-			height: 0,
-			opacity: 1
-		}, 300);
+			height: 20
+		}, 250);
 	},
 
-	listenForPortalHover: function(){
-		$('#portal').mouseover(function() {
-			PreviewModule.showBar();
-		}).mouseout(function(){
-			PreviewModule.hideBar();
-		});
-	},
+    listenForBarHover: function(){
+        $('#topDiv').mouseover(function() {
+            PreviewModule.showBar();
+        }).mouseleave(function() {
+            PreviewModule.hideBar();
+        })
+    },
 
 	//creates the portal at the current location of the cursor
 	putPortalAtCursor: function() {
@@ -183,9 +150,10 @@ PreviewModule = {
 	    	id: "topDiv",
 	    	rel: "external",
 	    	position: "absolute",
-	    	height: '0px',
+	    	height: '20px',
 	    	width: s.defaultWidth + 'px',
 	    	zindex: "2000000001",
+            opacity: 0.5
 	    });
 
 	    topDiv.css("background-color", "#DDDDDD");
@@ -206,6 +174,7 @@ PreviewModule = {
 	            "width": 0 + 'px',
 	            "height": 0 + 'px'
 	        });
+        var destination = $('#portal').offset();
 		$('#portal').prepend(topDiv);
 		PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);
 
@@ -215,7 +184,11 @@ PreviewModule = {
 			iframeFix: true
 		});
 
-		PreviewModule.listenForPortalHover();
+        $('#topDiv') // Replace this selector with one suitable for you
+            .append('<button type="submit" value="My button"><img src = "https://cdn4.iconfinder.com/data/icons/defaulticon/icons/png/256x256/redo.png" height="20" width="20"></button>') // Create the element
+            .button();
+
+        PreviewModule.listenForBarHover();
 		//Set the variable
 		portalIsShowing = true;
 	}
