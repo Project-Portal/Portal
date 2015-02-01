@@ -150,7 +150,7 @@ PreviewModule = {
 	    	id: "topDiv",
 	    	rel: "external",
 	    	position: "absolute",
-	    	height: '20px',
+	    	height: '25px',
 	    	width: s.defaultWidth + 'px',
 	    	zindex: "2000000001",
             opacity: 0.5
@@ -167,7 +167,7 @@ PreviewModule = {
 
 		//Move the portal to the mouse position
 		$('#portal').css({
-	            "position": "absolute",                    
+	            "position": "fixed",
 	            "left": x,
 	            "top": y,
 	            "z-index": "2000000000",
@@ -184,11 +184,12 @@ PreviewModule = {
 			iframeFix: true
 		});
 
-        $('#topDiv') // Replace this selector with one suitable for you
-            .append('<button type="submit" value="My button"><img src = "https://cdn4.iconfinder.com/data/icons/defaulticon/icons/png/256x256/redo.png" height="20" width="20"></button>') // Create the element
+        $('#topDiv')
+            .append('<button type="submit" value="My button"><img src = "https://cdn4.iconfinder.com' +
+            '/data/icons/defaulticon/icons/png/256x256/redo.png" height="25" width=25"></button>')
             .button();
 
-        PreviewModule.listenForBarHover();
+       // PreviewModule.listenForBarHover();
 		//Set the variable
 		portalIsShowing = true;
 	}

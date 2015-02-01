@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2bed5bcf-c453-4d93-b5a1-0ddc45166bf6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/rotation.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Portal.js" afterPath="$PROJECT_DIR$/Portal.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +29,8 @@
       <file leaf-file-name="Portal.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Portal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7932131" vertical-offset="2057" max-vertical-offset="3000">
-              <caret line="187" column="173" selection-start-line="187" selection-start-column="173" selection-end-line="187" selection-end-column="173" />
+            <state vertical-scroll-proportion="0.22057264" vertical-offset="2072" max-vertical-offset="3015">
+              <caret line="152" column="23" selection-start-line="152" selection-start-column="23" selection-end-line="152" selection-end-column="23" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -235,8 +232,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Portal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7932131" vertical-offset="2057" max-vertical-offset="3000">
-          <caret line="187" column="173" selection-start-line="187" selection-start-column="173" selection-end-line="187" selection-end-column="173" />
+        <state vertical-scroll-proportion="0.22057264" vertical-offset="2072" max-vertical-offset="3015">
+          <caret line="152" column="23" selection-start-line="152" selection-start-column="23" selection-end-line="152" selection-end-column="23" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
