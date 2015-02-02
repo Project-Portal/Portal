@@ -159,10 +159,10 @@ PreviewModule = {
 	    topDiv.css("background-color", "#DDDDDD");
 
 	    //create the portal div and the frame iFrame
-	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: 0,height: 0}).appendTo('body');
+	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: s.defaultWidth,height: s.defaultHeight}).appendTo('body');
 		$("#portal").css("background-color","white");
 		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
-		$("#frame").width(0).height(0);
+		$("#frame").width(s.defaultWidth).height(s.defaultHeight);
 		$('#frame').css({"box-shadow": "10px 10px 5px #888888"});
 
 		//Move the portal to the mouse position
@@ -176,7 +176,7 @@ PreviewModule = {
 	        });
         var destination = $('#portal').offset();
 		$('#portal').prepend(topDiv);
-		PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);
+		//PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);
 
 
 		//Enable Dragging of Portal
