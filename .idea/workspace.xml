@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2bed5bcf-c453-4d93-b5a1-0ddc45166bf6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Portal.js" afterPath="$PROJECT_DIR$/Portal.js" />
-    </list>
+    <list default="true" id="2bed5bcf-c453-4d93-b5a1-0ddc45166bf6" name="Default" comment="" />
     <ignored path="Portal.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +27,8 @@
       <file leaf-file-name="Portal.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Portal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22057264" vertical-offset="2072" max-vertical-offset="3015">
-              <caret line="152" column="23" selection-start-line="152" selection-start-column="23" selection-end-line="152" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.88204455" vertical-offset="2072" max-vertical-offset="3015">
+              <caret line="183" column="27" selection-start-line="183" selection-start-column="27" selection-end-line="183" selection-end-column="27" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -54,10 +52,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1560" />
-    <option name="y" value="49" />
+    <option name="x" value="26" />
+    <option name="y" value="138" />
     <option name="width" value="1258" />
-    <option name="height" value="1053" />
+    <option name="height" value="873" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -176,7 +174,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1560" y="49" width="1258" height="1053" extended-state="0" />
+    <frame x="26" y="138" width="1258" height="873" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -232,8 +230,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Portal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22057264" vertical-offset="2072" max-vertical-offset="3015">
-          <caret line="152" column="23" selection-start-line="152" selection-start-column="23" selection-end-line="152" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.88204455" vertical-offset="2072" max-vertical-offset="3015">
+          <caret line="183" column="27" selection-start-line="183" selection-start-column="27" selection-end-line="183" selection-end-column="27" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
