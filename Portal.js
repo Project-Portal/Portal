@@ -9,8 +9,8 @@ PreviewModule = {
 	settings: {
 		userHeight: screen.height,
 		userWidth: screen.width,
-		smallWidth: null,
-		smallHeight: null,
+		//smallHeight: Math.floor(screen.height/1.8), 
+		//smallWidth: Math.floor(screen.width/2.5),
 		largeHeight: Math.floor(screen.height/1.3), 
 		largeWidth: Math.floor(screen.width/2.5),
 		defaultHeight: Math.floor(screen.height/1.5), //PORTAL
@@ -72,6 +72,14 @@ PreviewModule = {
 			if(event.which == 103){
 				console.log("pressed g");
 				PreviewModule.resizePortal(s.largeWidth,s.largeHeight);	
+			}
+		});
+
+    	//listen for "s" keypress to grow portal
+		$(document).keypress(function(event){
+			if(event.which == 115){
+				console.log("pressed s");
+				PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);	
 			}
 		});
 
