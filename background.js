@@ -7,7 +7,7 @@ chrome.tabs.onSelectionChanged.addListener(function(tabId, selectInfo) {
    curTabID = tabId;
 });
 
-/**
+
 //User Agent Code
 chrome.webRequest.onBeforeSendHeaders.addListener(
     function(info) {
@@ -25,15 +25,14 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     {
         // Modify the headers for these pages
         urls: [
-            "http://www.nytimes.com/*",
-            "http://127.0.0.1:6789/*"
+            "http://www.nytimes.com/*"
         ],
         // In the main window and frames
         types: ["main_frame", "sub_frame"]
     },
     ["blocking", "requestHeaders"]
 );
-*/
+
 /*
 //****** OTHER WAY!!!! *********
   // The 'reqestFilter' parameter allows you to only listen for
