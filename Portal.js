@@ -34,6 +34,14 @@ PreviewModule = {
 			    //print url
 				console.log(url);
 				source = url;
+
+                chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
+                    //url = message;
+                    console.log("Message:   " + message);
+                    sendResponse({farewell:"How are you?"});
+                });
+
+
 			})
 			//set onLink to false when mouse leaves
 			.mouseleave(function(){
@@ -167,7 +175,8 @@ PreviewModule = {
 	    topDiv.css("background-color", "#DDDDDD");
 
 	    //create the portal div and the frame iFrame
-	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute', width: s.defaultWidth,height: s.defaultHeight}).appendTo('body');
+        //, width: s.defaultWidth,height: s.defaultHeight}
+	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute'}).appendTo('body');
 		$("#portal").css("background-color","white");
 		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
 		$("#frame").width(s.defaultWidth).height(s.defaultHeight);
@@ -175,7 +184,7 @@ PreviewModule = {
 
 		//Move the portal to the mouse position
 		$('#portal').css({
-	            "position": "fixed",
+	            "position": "absolute",
 	            "left": x,
 	            "top": y,
 	            "z-index": "2000000000",
@@ -184,7 +193,7 @@ PreviewModule = {
 	        });
         var destination = $('#portal').offset();
 		$('#portal').prepend(topDiv);
-		//PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);
+		PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);
 
 
 		//Enable Dragging of Portal

@@ -2,11 +2,16 @@ var ports = {};
 var activeTab = null;
 var curTabID = 0;
 var curWinID = 0;
+var url = "";
 
 chrome.tabs.onSelectionChanged.addListener(function(tabId, selectInfo) {
    curTabID = tabId;
 });
 
+chrome.runtime.sendMessage("test message", function(response) {
+    url = response.farewell;
+    console.log("response " + response.farewell);
+});
 
 //User Agent Code
 chrome.webRequest.onBeforeSendHeaders.addListener(
@@ -25,7 +30,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     {
         // Modify the headers for these pages
         urls: [
-            "http://www.nytimes.com/*"
+            url
         ],
         // In the main window and frames
         types: ["main_frame", "sub_frame"]

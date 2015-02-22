@@ -1,9 +1,9 @@
 {
 	"manifest_version": 2,
-	"name": "Portal",
-	"version": "0.0",
+	"name": "Project Portal",
+	"version": "0.1.2",
 
-	"description": "Enhances Browsing experience",
+	"description": "Tabs are a thing of the past!",
 	"icons": {
 		
 	},
