@@ -65,7 +65,8 @@ PreviewModule = {
 
 		//listen for when user clicks off portal to remove
     	document.addEventListener("click", function(e){
-				var toClose = e.target.id != "portal" && portalIsShowing;
+				var toClose = e.target.id != "portal" && e.target.id  != "topDiv" && e.target.id  != "rotateButton" && e.target.id  != "resizeButton" && portalIsShowing;
+                console.log("TARGET" + e.target.id);
 				if (toClose){
 					console.log(e.target.id);
 					console.log("Removed Portal!!");
@@ -100,6 +101,21 @@ PreviewModule = {
 		});
 	},
 
+    toggleResize: function() {
+        if ($("#portal").width() == s.defaultWidth){
+            PreviewModule.resizePortal(s.largeWidth, s.largeHeight,s.largeWidth);
+        }
+        else if ($("#portal").width() == s.defaultHeight){
+            PreviewModule.resizePortal(s.largeHeight, s.largeWidth,s.largeHeight);
+        }
+        else if ($("#portal").width() == s.largeWidth){
+            PreviewModule.resizePortal(s.defaultWidth, s.defaultHeight,s.defaultWidth);
+        }
+        else if ($("#portal").width() == s.largeHeight){
+            PreviewModule.resizePortal(s.defaultHeight, s.defaultWidth,s.defaultHeight);
+        }
+    },
+
 	followMouse: function() {
 		$(document).on('mousemove', function(e){
 			console.log("im moving");
@@ -109,7 +125,7 @@ PreviewModule = {
 	},
 
 	//http://css-tricks.com/examples/jQueryStop/
-	resizePortal: function(w, h) {
+	resizePortal: function(w, h, t) {
 		console.log("PORTAL" + $('#portal').css('width'));
 		console.log("FRAME" + $('#frame').css('width'));
 		//console.log("DEFAULT" + s.defaultWidth);
@@ -119,18 +135,24 @@ PreviewModule = {
 			opacity: 1
 			//left: ("+=50"),
 		}, 300);
+
 		$("#frame").animate({
 			width: w,
 			height: h,
 			opacity: 1
 			//left: ("+=50"),
 		}, 300);
+
+        $("#topDiv").animate({
+            height: '25px',
+            width: t
+        }, 100);
 	},
 
 	rotatePortal: function(){
 		h = $('#portal').width();
 		w = $('#portal').height();
-		PreviewModule.resizePortal(w,h);
+		PreviewModule.resizePortal(w,h,w);
 	},
 
 	showBar: function() {
@@ -175,7 +197,6 @@ PreviewModule = {
 	    topDiv.css("background-color", "#DDDDDD");
 
 	    //create the portal div and the frame iFrame
-        //, width: s.defaultWidth,height: s.defaultHeight}
 	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute'}).appendTo('body');
 		$("#portal").css("background-color","white");
 		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
@@ -193,7 +214,7 @@ PreviewModule = {
 	        });
         var destination = $('#portal').offset();
 		$('#portal').prepend(topDiv);
-		PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);
+		PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight,s.defaultWidth);
 
 
 		//Enable Dragging of Portal
@@ -201,10 +222,31 @@ PreviewModule = {
 			iframeFix: true
 		});
 
-        $('#topDiv')
-            .append('<button type="submit" value="My button"><img src = "https://cdn4.iconfinder.com' +
+
+       /* $('#topDiv')
+            .append('<button  type="submit"x value="MyButton"><img src = "https://cdn4.iconfinder.com' +
             '/data/icons/defaulticon/icons/png/256x256/redo.png" height="25" width=25"></button>')
-            .button();
+            .button(); */
+
+        //Create Rotate Button
+        var rotateButton = document.createElement('button');
+        rotateButton.innerHTML = 'Rotate';
+        rotateButton.setAttribute("id", "rotateButton");
+        //document.getElementById('rotateButton').src =
+        $('#topDiv').append(rotateButton);
+        rotateButton.onclick = PreviewModule.rotatePortal;
+
+        //Create Resize Button
+        var resizeButton = document.createElement('button');
+        resizeButton.innerHTML = 'Resize';
+        resizeButton.setAttribute("id", "resizeButton");
+        $('#topDiv').append(resizeButton);
+        resizeButton.onclick = PreviewModule.toggleResize;
+
+
+        //document.getElementById("Rotate").addEventListener("click", function(){
+        //    console.log("HI!");
+        //});
 
        // PreviewModule.listenForBarHover();
 		//Set the variable
