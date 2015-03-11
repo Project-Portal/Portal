@@ -222,7 +222,7 @@ PreviewModule = {
 			iframeFix: true
 		});
 
-
+        //OLD ROTATE BUTTON
        /* $('#topDiv')
             .append('<button  type="submit"x value="MyButton"><img src = "https://cdn4.iconfinder.com' +
             '/data/icons/defaulticon/icons/png/256x256/redo.png" height="25" width=25"></button>')
