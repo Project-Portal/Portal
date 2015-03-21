@@ -1,15 +1,17 @@
 
 body {
-    min-width:600px;
+    min-width:400px;
 }
 
-.grey {
-	background-color: #ccc;
-	padding: 20px;
+.footer {
+	background-color: #eaeaea;
+	height: 40px;
+	width: 100%;
 }
 
-.blue {
-	background-color: #59ACFF
+.vcenter {
+	padding-top: 10px;
 }
+
 
 
