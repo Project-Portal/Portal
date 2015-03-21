@@ -1,5 +1,15 @@
+
+body {
+    min-width:600px;
+}
+
 .grey {
 	background-color: #ccc;
 	padding: 20px;
-
 }
+
+.blue {
+	background-color: #59ACFF
+}
+
+
