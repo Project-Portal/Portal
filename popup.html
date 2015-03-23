@@ -4,17 +4,19 @@
 <head>
 	<meta charset"utf-8">
     <title>Portal</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="popup.css">
+    <link rel="stylesheet" type="text/css" href="popup.css"/>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
 </head>
     <body>
     <header>
         <div class="jumbotron">
             <div class="container">
-                <div class="navbar-header">
-                    <h2>Portal Preferences</h2>
-                </div>
+                <div class="row">
+                    <div class="navbar-header">
+                        <h2>Portal Preferences</h2>
+                    </div>
+                    <span class="glyphicon glyphicon-cog"></span>
+                </div>    
             </div>
         </div>
     </header>
@@ -22,32 +24,38 @@
     <div class="container">
         <form action="">
             <div class="form-group">
-                <label for="element-1">Change key to open portal</label>
-                <input type="text" id="element-1" class="form-control">
+                <label for="hotkey">Change key to open portal</label>
+                <input type="text" id="hotkey" class="form-control">
             </div>
             <p class="help-block">Only select one key</p>
 
             <div class="checkbox">
-                <label><input type="checkbox"/>Default "P"</label>
+                <label><input type="checkbox" id="defaultHotkey"/>Default "P"</label>
             </div>
+
             <hr>
+
             <div class="form-group">
                 <div class="checkbox">
-                    <label><input type="checkbox" id="element-2"/>Enable drag to resize</label>
+                    <label><input type="checkbox" id="dragResize"/>Enable drag to resize</label>
                 </div>
             </div>
+            <br>
             <button type="button" id="saveSettings" class="btn btn-success btn-block">Save</button>
+            <br>
+
+            <div id="status"></div>
         </form>
     </div>
-    <br>
 
     <footer class="footer">
         <div class="container">
             <p class="text-muted text-center vcenter">Created by Michael Rosenfield and Israel Hill</p>
         </div>
     </footer>
-        <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> 
+        <script type="text/javascript" src="options.js"></script>
+        <script src="jquery.min.js"></script>
+        <script src="js/bootstrap.js"></script> 
     </body>
 </html>
 

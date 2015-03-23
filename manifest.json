@@ -1,7 +1,8 @@
 {
 	"manifest_version": 2,
 	"name": "Project Portal",
-	"version": "0.1.7",
+	"version": "0.1.8",
+	"options_page": "popup.html",
 
 	"description": "Tabs are a thing of the past!",
     "icons": {
@@ -20,19 +21,29 @@
 	},
 
 	"content_scripts": [
-
 			{
 				"matches": [
 					"http://*/*",
 					"https://*/*"
 				],
 				"css": [],
-	      		"js": [ "jquery.min.js", "jquery-ui.min.js", "jquery-ui.js", "Portal.js", "contentscript.js", "run.js"],
+	      		"js": [ "jquery.min.js", 
+	      		"jquery-ui.min.js", 
+	      		"jquery-ui.js", 
+	      		"Portal.js", 
+	      		"contentscript.js", 
+	      		"run.js", 
+	      		"options.js"],
+
 				"run_at": "document_idle",
 				"all_frames": false
 			}
 		],
 	"permissions": [
-		"tabs", "webRequest", "webRequestBlocking", "http://*/*"
+		"tabs", 
+		"webRequest", 
+		"webRequestBlocking", 
+		"http://*/*",
+		"storage"
 	]
 }

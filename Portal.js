@@ -4,7 +4,7 @@
 var mouse = {x:0, y:0};
 var s, source, portalIsShowing, barShowing, onLink, $topDiv,
 
-PreviewModule = {
+ PreviewModule = {
 	//various variables we may want to retrieve at any given time
 	settings: {
 		userHeight: screen.height,
@@ -235,11 +235,15 @@ PreviewModule = {
         //document.getElementById('rotateButton').src =
         $('#topDiv').append(rotateButton);
         rotateButton.onclick = PreviewModule.rotatePortal;
+        $('#rotatebutton').css({
+            "background-color": "#000000"
+        });
 
         //Create Resize Button
         var resizeButton = document.createElement('button');
         resizeButton.innerHTML = 'Resize';
         resizeButton.setAttribute("id", "resizeButton");
+        resizeButton.setAttribute("class", "btnPortal");
         $('#topDiv').append(resizeButton);
         resizeButton.onclick = PreviewModule.toggleResize;
 
