@@ -68,6 +68,7 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultK
     	}
 		
 
+    	//Fix this so that the portal will appear again!
 		//listen for 'p' keypress
 		$(document).keypress(function(event){
 			if(event.which == portalKey.charCodeAt(0) && onLink){
