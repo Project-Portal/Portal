@@ -2,7 +2,7 @@
 //s --> settings
 
 var mouse = {x:0, y:0};
-var s, source, portalIsShowing, barShowing, onLink, $topDiv,
+var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultKey,
 
  PreviewModule = {
 	//various variables we may want to retrieve at any given time
@@ -15,7 +15,6 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv,
 		largeWidth: Math.floor(screen.width/2.5),
 		defaultHeight: Math.floor(screen.height/1.5), //PORTAL
 		defaultWidth: Math.floor(screen.width/3.7)
-
 	},
 
 	//Remove portal when you click anywhere outside the portal
@@ -32,7 +31,6 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv,
 				//get the url
 			    var url = $(this).attr('href');
 			    //print url
-				console.log(url);
 				source = url;
 
                 chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
@@ -54,11 +52,25 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv,
 		s = this.settings;
 		this.followMouse();
 		this.isOverLink();
+		chrome.storage.local.get('defaultHotkey', function (items) {
+	        defaultKey = items.defaultHotKey;
+    	});
+
+    	if(defaultKey) {
+    		portalKey = 'p';
+    		alert(portalKey.charCodeAt(0));
+    	}
+    	else{
+    		chrome.storage.local.get('hotkey', function (items) {
+	        	portalKey = items.hotKey;
+    		});
+    		alert(portalKey.charCodeAt(0));
+    	}
+		
 
 		//listen for 'p' keypress
 		$(document).keypress(function(event){
-			if(event.which == 112 && onLink){
-				console.log("pressed p");
+			if(event.which == portalKey.charCodeAt(0) && onLink){
 	        	PreviewModule.putPortalAtCursor(); 
         	}    
     	});
@@ -66,10 +78,7 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv,
 		//listen for when user clicks off portal to remove
     	document.addEventListener("click", function(e){
 				var toClose = e.target.id != "portal" && e.target.id  != "topDiv" && e.target.id  != "rotateButton" && e.target.id  != "resizeButton" && portalIsShowing;
-                console.log("TARGET" + e.target.id);
 				if (toClose){
-					console.log(e.target.id);
-					console.log("Removed Portal!!");
 					PreviewModule.removePortal();
 				}
 				else {
@@ -79,7 +88,6 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv,
     	//listen for "g" keypress to grow portal
 		$(document).keypress(function(event){
 			if(event.which == 103){
-				console.log("pressed g");
 				PreviewModule.resizePortal(s.largeWidth,s.largeHeight);	
 			}
 		});
@@ -87,7 +95,6 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv,
     	//listen for "s" keypress to grow portal
 		$(document).keypress(function(event){
 			if(event.which == 115){
-				console.log("pressed s");
 				PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);	
 			}
 		});
@@ -95,7 +102,6 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv,
     	//listen for "r" keypress to rotate portal
 		$(document).keypress(function(event){
 			if(event.which == 114){
-				console.log("pressed r");
 				PreviewModule.rotatePortal();
 			}
 		});
@@ -118,7 +124,6 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv,
 
 	followMouse: function() {
 		$(document).on('mousemove', function(e){
-			console.log("im moving");
     		mouse.x = e.pageX;
     		mouse.y = e.pageY;
 		});
@@ -126,8 +131,6 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv,
 
 	//http://css-tricks.com/examples/jQueryStop/
 	resizePortal: function(w, h, t) {
-		console.log("PORTAL" + $('#portal').css('width'));
-		console.log("FRAME" + $('#frame').css('width'));
 		//console.log("DEFAULT" + s.defaultWidth);
 		$("#portal").animate({
 			width: w,
