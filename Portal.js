@@ -64,20 +64,20 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
 
     	if(defaultKey) {
     		portalKey = 'p';
-    		alert(portalKey.charCodeAt(0));
+    		//alert(portalKey.charCodeAt(0));
     	}
     	else{
     		chrome.storage.local.get('hotkey', function (items) {
 	        	portalKey = items.hotKey;
     		});
-    		alert(portalKey.charCodeAt(0));
+    		//alert(portalKey.charCodeAt(0));
     	}
 
 
     	//Fix this so that the portal will appear again!
 		//listen for 'p' keypress
 		$(document).keypress(function(event){
-			if(event.which == portalKey.charCodeAt(0) && onLink){
+			if(event.which ==  112 && onLink){
 	        	PreviewModule.putPortalAtCursor();
         	}
     	});
@@ -98,14 +98,14 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
     	//listen for "g" keypress to grow portal
 		$(document).keypress(function(event){
 			if(event.which == 103){
-				PreviewModule.resizePortal(s.largeWidth,s.largeHeight);
+				PreviewModule.resizePortal(portalSettings.largeWidth,portalSettings.largeHeight);
 			}
 		});
 
     	//listen for "s" keypress to grow portal
 		$(document).keypress(function(event){
 			if(event.which == 115){
-				PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);
+				PreviewModule.resizePortal(portalSettings.defaultWidth,portalSettings.defaultHeight);
 			}
 		});
 
@@ -119,16 +119,16 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
 
     toggleResize: function() {
         if ($("#portal").width() == portalSettings.defaultWidth){
-            PreviewModule.resizePortal(s.largeWidth, portalSettings.largeHeight,s.largeWidth);
+            PreviewModule.resizePortal(portalSettings.largeWidth, portalSettings.largeHeight,portalSettings.largeWidth);
         }
         else if ($("#portal").width() == portalSettings.defaultHeight){
-            PreviewModule.resizePortal(s.largeHeight, portalSettings.largeWidth,s.largeHeight);
+            PreviewModule.resizePortal(portalSettings.largeHeight, portalSettings.largeWidth,portalSettings.largeHeight);
         }
         else if ($("#portal").width() == portalSettings.largeWidth){
-            PreviewModule.resizePortal(s.defaultWidth, portalSettings.defaultHeight,s.defaultWidth);
+            PreviewModule.resizePortal(portalSettings.defaultWidth, portalSettings.defaultHeight,portalSettings.defaultWidth);
         }
         else if ($("#portal").width() == portalSettings.largeHeight){
-            PreviewModule.resizePortal(s.defaultHeight, portalSettings.defaultWidth,s.defaultHeight);
+            PreviewModule.resizePortal(portalSettings.defaultHeight, portalSettings.defaultWidth,portalSettings.defaultHeight);
         }
     },
 
@@ -215,7 +215,7 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
 	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute'}).appendTo('body');
 		$("#portal").css("background-color","white");
 		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
-		$("#frame").width(s.defaultWidth).height(s.defaultHeight);
+		$("#frame").width(portalSettings.defaultWidth).height(portalSettings.defaultHeight);
 		$('#frame').css({"box-shadow": "10px 10px 5px #888888"});
 
 		//Move the portal to the mouse position
@@ -229,7 +229,7 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
 	        });
         var destination = $('#portal').offset();
 		$('#portal').prepend(topDiv);
-		PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight,s.defaultWidth);
+		PreviewModule.resizePortal(portalSettings.defaultWidth,portalSettings.defaultHeight,portalSettings.defaultWidth);
 
 
 		//Enable Dragging of Portal
