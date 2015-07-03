@@ -1,17 +1,18 @@
+/*
+ * Creates the portal
+ */
+
 //source--> the URL of the link
-//s --> settings
 
 var mouse = {x:0, y:0};
-var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultKey,
+var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultKey
 
  PreviewModule = {
 	//various variables we may want to retrieve at any given time
 	settings: {
 		userHeight: screen.height,
 		userWidth: screen.width,
-		//smallHeight: Math.floor(screen.height/1.8), 
-		//smallWidth: Math.floor(screen.width/2.5),
-		largeHeight: Math.floor(screen.height/1.3), 
+		largeHeight: Math.floor(screen.height/1.3),
 		largeWidth: Math.floor(screen.width/2.5),
 		defaultHeight: Math.floor(screen.height/1.5), //PORTAL
 		defaultWidth: Math.floor(screen.width/3.7)
@@ -25,6 +26,9 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultK
 		portalIsShowing = false;
 	},
 
+  /*
+   * Returns whether the mouse pointer is over a link
+   */
 	isOverLink: function() {
 		$("a").mouseenter(function(){
 				onLink = true;
@@ -44,12 +48,14 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultK
 			//set onLink to false when mouse leaves
 			.mouseleave(function(){
 				onLink = false;
-			}); 
+			});
 		},
 
-	//initialize function
+  /*
+  * Initialize the portal
+  */
 	init: function() {
-		s = this.settings;
+		portalSettings = this.settings;
 		this.followMouse();
 		this.isOverLink();
 		chrome.storage.local.get('defaultHotkey', function (items) {
@@ -66,21 +72,24 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultK
     		});
     		alert(portalKey.charCodeAt(0));
     	}
-		
+
 
     	//Fix this so that the portal will appear again!
 		//listen for 'p' keypress
 		$(document).keypress(function(event){
 			if(event.which == portalKey.charCodeAt(0) && onLink){
-	        	PreviewModule.putPortalAtCursor(); 
-        	}    
+	        	PreviewModule.putPortalAtCursor();
+        	}
     	});
 
 		//listen for when user clicks off portal to remove
     	document.addEventListener("click", function(e){
-				var toClose = e.target.id != "portal" && e.target.id  != "topDiv" && e.target.id  != "rotateButton" && e.target.id  != "resizeButton" && portalIsShowing;
+				var toClose = e.target.id != "portal" && e.target.id  != "topDiv"
+                      && e.target.id  != "rotateButton"
+                      && e.target.id  != "resizeButton"
+                      && portalIsShowing;
 				if (toClose){
-					PreviewModule.removePortal();
+          PreviewModule.removePortal();
 				}
 				else {
 					//do nothing
@@ -89,14 +98,14 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultK
     	//listen for "g" keypress to grow portal
 		$(document).keypress(function(event){
 			if(event.which == 103){
-				PreviewModule.resizePortal(s.largeWidth,s.largeHeight);	
+				PreviewModule.resizePortal(s.largeWidth,s.largeHeight);
 			}
 		});
 
     	//listen for "s" keypress to grow portal
 		$(document).keypress(function(event){
 			if(event.which == 115){
-				PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);	
+				PreviewModule.resizePortal(s.defaultWidth,s.defaultHeight);
 			}
 		});
 
@@ -109,17 +118,17 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultK
 	},
 
     toggleResize: function() {
-        if ($("#portal").width() == s.defaultWidth){
-            PreviewModule.resizePortal(s.largeWidth, s.largeHeight,s.largeWidth);
+        if ($("#portal").width() == portalSettings.defaultWidth){
+            PreviewModule.resizePortal(s.largeWidth, portalSettings.largeHeight,s.largeWidth);
         }
-        else if ($("#portal").width() == s.defaultHeight){
-            PreviewModule.resizePortal(s.largeHeight, s.largeWidth,s.largeHeight);
+        else if ($("#portal").width() == portalSettings.defaultHeight){
+            PreviewModule.resizePortal(s.largeHeight, portalSettings.largeWidth,s.largeHeight);
         }
-        else if ($("#portal").width() == s.largeWidth){
-            PreviewModule.resizePortal(s.defaultWidth, s.defaultHeight,s.defaultWidth);
+        else if ($("#portal").width() == portalSettings.largeWidth){
+            PreviewModule.resizePortal(s.defaultWidth, portalSettings.defaultHeight,s.defaultWidth);
         }
-        else if ($("#portal").width() == s.largeHeight){
-            PreviewModule.resizePortal(s.defaultHeight, s.defaultWidth,s.defaultHeight);
+        else if ($("#portal").width() == portalSettings.largeHeight){
+            PreviewModule.resizePortal(s.defaultHeight, portalSettings.defaultWidth,s.defaultHeight);
         }
     },
 
@@ -132,7 +141,7 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultK
 
 	//http://css-tricks.com/examples/jQueryStop/
 	resizePortal: function(w, h, t) {
-		//console.log("DEFAULT" + s.defaultWidth);
+		//console.log("DEFAULT" + portalSettings.defaultWidth);
 		$("#portal").animate({
 			width: w,
 			height: h,
@@ -181,7 +190,9 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultK
         })
     },
 
-	//creates the portal at the current location of the cursor
+	/*
+  * Creates the portal at the current location of the cursor
+  */
 	putPortalAtCursor: function() {
 		//get mouse position
 	    var x = mouse.x + 'px';
@@ -193,7 +204,7 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultK
 	    	rel: "external",
 	    	position: "absolute",
 	    	height: '25px',
-	    	width: s.defaultWidth + 'px',
+	    	width: portalSettings.defaultWidth + 'px',
 	    	zindex: "2000000001",
             opacity: 0.5
 	    });
@@ -225,13 +236,6 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultK
 		$("#portal").draggable({
 			iframeFix: true
 		});
-
-        //OLD ROTATE BUTTON
-       /* $('#topDiv')
-            .append('<button  type="submit"x value="MyButton"><img src = "https://cdn4.iconfinder.com' +
-            '/data/icons/defaulticon/icons/png/256x256/redo.png" height="25" width=25"></button>')
-            .button(); */
-
         //Create Rotate Button
         var rotateButton = document.createElement('button');
         rotateButton.innerHTML = 'Rotate';
@@ -251,12 +255,6 @@ var s, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultK
         $('#topDiv').append(resizeButton);
         resizeButton.onclick = PreviewModule.toggleResize;
 
-
-        //document.getElementById("Rotate").addEventListener("click", function(){
-        //    console.log("HI!");
-        //});
-
-       // PreviewModule.listenForBarHover();
 		//Set the variable
 		portalIsShowing = true;
 	}
