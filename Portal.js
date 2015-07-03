@@ -74,7 +74,7 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
     	}
 
 
-    	//Fix this so that the portal will appear again!
+
 		//listen for 'p' keypress
 		$(document).keypress(function(event){
 			if(event.which ==  112 && onLink){
@@ -209,7 +209,7 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
             opacity: 0.5
 	    });
 
-	    topDiv.css("background-color", "#DDDDDD");
+	    topDiv.css("background-color", "#03A9F4cd ");
 
 	    //create the portal div and the frame iFrame
 	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute'}).appendTo('body');
@@ -240,12 +240,25 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
         var rotateButton = document.createElement('button');
         rotateButton.innerHTML = 'Rotate';
         rotateButton.setAttribute("id", "rotateButton");
-        //document.getElementById('rotateButton').src =
         $('#topDiv').append(rotateButton);
+        rotateButton.style.setProperty('background-color', '#E64A19', 'important');
+        rotateButton.style.setProperty('height', '26px', 'important');
+        rotateButton.style.setProperty('border', '0', 'important');
+        rotateButton.style.setProperty('margin', '0', 'important');
+        rotateButton.style.setProperty('color', '#FFFFFF', 'important');
+        rotateButton.style.setProperty('font-family', 'sans-serif', 'important');
+        rotateButton.style.setProperty('font-family', 'sans-serif', 'important');
         rotateButton.onclick = PreviewModule.rotatePortal;
-        $('#rotatebutton').css({
-            "background-color": "#000000"
+
+        //Change the color of the button when you hover in and out
+        $("#rotateButton").mouseover(function(){
+          rotateButton.style.setProperty('background-color', '#FF6838', 'important');
         });
+
+        $("#rotateButton").mouseout(function(){
+          rotateButton.style.setProperty('background-color', '#E64A19', 'important');
+        });
+
 
         //Create Resize Button
         var resizeButton = document.createElement('button');
@@ -254,8 +267,23 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
         resizeButton.setAttribute("class", "btnPortal");
         $('#topDiv').append(resizeButton);
         resizeButton.onclick = PreviewModule.toggleResize;
+        resizeButton.style.setProperty('background-color', '#E64A19', 'important');
+        resizeButton.style.setProperty('color', '#FFFFFF', 'important');
+        resizeButton.style.setProperty('border', '0', 'important');
+        resizeButton.style.setProperty('margin', '0', 'important');
+        resizeButton.style.setProperty('text-transform', 'capitalize', 'impo')
+        resizeButton.style.setProperty('font-family', 'sans-serif', 'important');
+        resizeButton.style.setProperty('height', '26px', 'important');
 
-		//Set the variable
+        //Change the color of the button when you hover in and out
+        $("#resizeButton").mouseover(function(){
+          resizeButton.style.setProperty('background-color', '#FF6838', 'important');
+        });
+
+        $("#resizeButton").mouseout(function(){
+          resizeButton.style.setProperty('background-color', '#E64A19', 'important');
+        });
+
 		portalIsShowing = true;
 	}
 };
