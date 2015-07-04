@@ -247,7 +247,9 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
         rotateButton.style.setProperty('margin', '0', 'important');
         rotateButton.style.setProperty('color', '#FFFFFF', 'important');
         rotateButton.style.setProperty('font-family', 'sans-serif', 'important');
-        rotateButton.style.setProperty('font-family', 'sans-serif', 'important');
+        rotateButton.style.setProperty('text-transform', 'capitalize', 'important');
+        rotateButton.style.setProperty('padding', '0px 5px', 'important');
+        rotateButton.style.setProperty('font-size', 'medium', 'important');
         rotateButton.onclick = PreviewModule.rotatePortal;
 
         //Change the color of the button when you hover in and out
@@ -265,15 +267,17 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
         resizeButton.innerHTML = 'Resize';
         resizeButton.setAttribute("id", "resizeButton");
         resizeButton.setAttribute("class", "btnPortal");
-        $('#topDiv').append(resizeButton);
         resizeButton.onclick = PreviewModule.toggleResize;
+        $('#topDiv').append(resizeButton);
         resizeButton.style.setProperty('background-color', '#E64A19', 'important');
         resizeButton.style.setProperty('color', '#FFFFFF', 'important');
         resizeButton.style.setProperty('border', '0', 'important');
         resizeButton.style.setProperty('margin', '0', 'important');
-        resizeButton.style.setProperty('text-transform', 'capitalize', 'impo')
+        resizeButton.style.setProperty('text-transform', 'capitalize', 'important');
         resizeButton.style.setProperty('font-family', 'sans-serif', 'important');
         resizeButton.style.setProperty('height', '26px', 'important');
+        resizeButton.style.setProperty('padding', '0px 5px', 'important');
+        resizeButton.style.setProperty('font-size', 'medium', 'important');
 
         //Change the color of the button when you hover in and out
         $("#resizeButton").mouseover(function(){
