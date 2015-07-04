@@ -16,10 +16,9 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
 		largeWidth: Math.floor(screen.width/2.5),
 		defaultHeight: Math.floor(screen.height/1.5), //PORTAL
 		defaultWidth: Math.floor(screen.width/3.7),
-    // This is cery hacky, but its the only way I've been able to get the key out
+    // This is very hacky, but its the only way I've been able to get the key out
     // of chrome storage
     getStorageVariables: chrome.storage.sync.get("hotkey", function(obj){
-      console.log("Object: " + obj.hotkey);
       newHotKey = obj.hotkey;
       })
 	},
@@ -78,8 +77,6 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
     		});
     		//alert(portalKey.charCodeAt(0));
     	}
-
-
 
 		//listen for 'p' keypress
 		$(document).keypress(function(event){
@@ -210,7 +207,7 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
 	    	rel: "external",
 	    	position: "absolute",
 	    	height: '25px',
-	    	width: portalSettings.defaultWidth + 'px',
+	    	width: portalSettings.defaultWidth + 4 + 'px',
 	    	zindex: "2000000001",
             opacity: 0.5
 	    });
@@ -294,11 +291,6 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
           resizeButton.style.setProperty('background-color', '#E64A19', 'important');
         });
 
-        console.log('******HOTKEY: ' + newHotKey);
-        console.log('H keycode: ' + 'h'.charCodeAt(0));
-        console.log('P keycode: ' + 'p'.charCodeAt(0));
-        console.log('P uppercase code: ' + 'P'.charCodeAt(0));
-        console.log('H uppercase code: ' + 'H'.charCodeAt(0));
 		portalIsShowing = true;
 	}
 };
