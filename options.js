@@ -1,20 +1,24 @@
 //saves the user's preferences
 function saveOptions() {
-	var hotkey = document.getElementById('hotkey').value;
+	var hotkey = document.getElementById('hotkey').value.toLowerCase();
 	var dragResize = document.getElementById('dragResize').checked;
 	var defaultHotkey = document.getElementById('defaultHotkey').checked;
 
 	chrome.storage.sync.set({
-    hotkey: hotkey,
-    dragResize: dragResize,
-    defaultHotkey: defaultHotkey
+    "hotkey": hotkey,
+    'dragResize': dragResize,
+    'defaultHotkey': defaultHotkey
   }, function() {
     // Update status to let user know options were saved.
     var status = document.getElementById('status');
-    status.textContent = 'Options saved.';
+		status.className = "alert alert-success";
+		status.role = "alert";
+    status.textContent = 'Options saved!' + ' New Hotkey: ' + hotkey + '. Refresh the page to see your changes take effect.';
     setTimeout(function() {
       status.textContent = '';
-    }, 900);
+			status.role = '';
+			status.className = '';
+    }, 6000);
   });
 }
 

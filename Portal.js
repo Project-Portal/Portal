@@ -5,7 +5,7 @@
 //source--> the URL of the link
 
 var mouse = {x:0, y:0};
-var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portalKey, defaultKey
+var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $topDiv, portalKey, defaultKey
 
  PreviewModule = {
 	//various variables we may want to retrieve at any given time
@@ -15,7 +15,13 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
 		largeHeight: Math.floor(screen.height/1.3),
 		largeWidth: Math.floor(screen.width/2.5),
 		defaultHeight: Math.floor(screen.height/1.5), //PORTAL
-		defaultWidth: Math.floor(screen.width/3.7)
+		defaultWidth: Math.floor(screen.width/3.7),
+    // This is cery hacky, but its the only way I've been able to get the key out
+    // of chrome storage
+    getStorageVariables: chrome.storage.sync.get("hotkey", function(obj){
+      console.log("Object: " + obj.hotkey);
+      newHotKey = obj.hotkey;
+      })
 	},
 
 	//Remove portal when you click anywhere outside the portal
@@ -77,7 +83,7 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
 
 		//listen for 'p' keypress
 		$(document).keypress(function(event){
-			if(event.which ==  112 && onLink){
+			if(event.which ==  newHotKey.charCodeAt(0) && onLink){
 	        	PreviewModule.putPortalAtCursor();
         	}
     	});
@@ -96,25 +102,25 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
 				}
 			});
     	//listen for "g" keypress to grow portal
-		$(document).keypress(function(event){
-			if(event.which == 103){
-				PreviewModule.resizePortal(portalSettings.largeWidth,portalSettings.largeHeight);
-			}
-		});
-
-    	//listen for "s" keypress to grow portal
-		$(document).keypress(function(event){
-			if(event.which == 115){
-				PreviewModule.resizePortal(portalSettings.defaultWidth,portalSettings.defaultHeight);
-			}
-		});
-
-    	//listen for "r" keypress to rotate portal
-		$(document).keypress(function(event){
-			if(event.which == 114){
-				PreviewModule.rotatePortal();
-			}
-		});
+		// $(document).keypress(function(event){
+		// 	if(event.which == 103){
+		// 		PreviewModule.resizePortal(portalSettings.largeWidth,portalSettings.largeHeight);
+		// 	}
+		// });
+    //
+    // 	//listen for "s" keypress to grow portal
+		// $(document).keypress(function(event){
+		// 	if(event.which == 115){
+		// 		PreviewModule.resizePortal(portalSettings.defaultWidth,portalSettings.defaultHeight);
+		// 	}
+		// });
+    //
+    // 	//listen for "r" keypress to rotate portal
+		// $(document).keypress(function(event){
+		// 	if(event.which == 114){
+		// 		PreviewModule.rotatePortal();
+		// 	}
+		// });
 	},
 
     toggleResize: function() {
@@ -288,6 +294,11 @@ var portalSettings, source, portalIsShowing, barShowing, onLink, $topDiv, portal
           resizeButton.style.setProperty('background-color', '#E64A19', 'important');
         });
 
+        console.log('******HOTKEY: ' + newHotKey);
+        console.log('H keycode: ' + 'h'.charCodeAt(0));
+        console.log('P keycode: ' + 'p'.charCodeAt(0));
+        console.log('P uppercase code: ' + 'P'.charCodeAt(0));
+        console.log('H uppercase code: ' + 'H'.charCodeAt(0));
 		portalIsShowing = true;
 	}
 };
