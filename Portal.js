@@ -78,14 +78,24 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
     		//alert(portalKey.charCodeAt(0));
     	}
 
-		//listen for 'p' keypress
+		// Listen for Hotkey Key press
 		$(document).keypress(function(event){
 			if(event.which ==  newHotKey.charCodeAt(0) && onLink){
 	        	PreviewModule.putPortalAtCursor();
-        	}
-    	});
+      }
+    });
 
-		//listen for when user clicks off portal to remove
+    // Listen for Middle Click
+    $(document).on('mousedown', function(event2){
+			if(event2.which ==  2 && onLink){
+        document.oncontextmenu = function() {
+            return false;
+        }
+	      PreviewModule.putPortalAtCursor();
+      }
+    });
+
+		// listen for when user clicks off portal to remove
     	document.addEventListener("click", function(e){
 				var toClose = e.target.id != "portal" && e.target.id  != "topDiv"
                       && e.target.id  != "rotateButton"
