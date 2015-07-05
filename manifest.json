@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Project Portal",
-	"version": "0.1.9",
+	"version": "0.1.92",
 	"options_page": "popup.html",
 
 	"description": "Tabs are a thing of the past!",

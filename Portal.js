@@ -197,24 +197,37 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
   * Creates the portal at the current location of the cursor
   */
 	putPortalAtCursor: function() {
-		//get mouse position
-	    var x = mouse.x + 'px';
-	    var y = mouse.y + 'px';
+    //Offset values
+    var offset_x = 0;
+    var offset_y = 0;
 
-	    //top bar that appears above the portal
-	    topDiv = $('<div>', {
-	    	id: "topDiv",
-	    	rel: "external",
-	    	position: "absolute",
-	    	height: '25px',
-	    	width: portalSettings.defaultWidth + 4 + 'px',
-	    	zindex: "2000000001",
-            opacity: 0.5
-	    });
+    //Window dimensions
+    var window_width = window.innerWidth;
+    var window_height = window.innerHeight;
 
-	    topDiv.css("background-color", "#03A9F4cd ");
+    // TODO(mrosenfield): Implement Y-Axis intelligence
+    // TODO(mrosenfield): Change growth animation when growing from right
+    if ((window_width - mouse.x) < portalSettings.defaultWidth) {
+      offset_x = portalSettings.defaultWidth;
+    }
 
-	    //create the portal div and the frame iFrame
+    x = mouse.x - offset_x + 'px';
+    y = mouse.y - offset_y + 'px';
+
+    //top bar that appears above the portal
+    topDiv = $('<div>', {
+    	id: "topDiv",
+    	rel: "external",
+    	position: "absolute",
+    	height: '25px',
+    	width: portalSettings.defaultWidth + 4 + 'px',
+    	zindex: "2000000001",
+          opacity: 0.5
+    });
+
+    topDiv.css("background-color", "#03A9F4cd ");
+
+	  //create the portal div and the frame iFrame
 	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute'}).appendTo('body');
 		$("#portal").css("background-color","white");
 		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
@@ -239,58 +252,59 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
 		$("#portal").draggable({
 			iframeFix: true
 		});
-        //Create Rotate Button
-        var rotateButton = document.createElement('button');
-        rotateButton.innerHTML = 'Rotate';
-        rotateButton.setAttribute("id", "rotateButton");
-        $('#topDiv').append(rotateButton);
-        rotateButton.style.setProperty('background-color', '#E64A19', 'important');
-        rotateButton.style.setProperty('height', '26px', 'important');
-        rotateButton.style.setProperty('border', '0', 'important');
-        rotateButton.style.setProperty('margin', '0', 'important');
-        rotateButton.style.setProperty('color', '#FFFFFF', 'important');
-        rotateButton.style.setProperty('font-family', 'sans-serif', 'important');
-        rotateButton.style.setProperty('text-transform', 'capitalize', 'important');
-        rotateButton.style.setProperty('padding', '0px 5px', 'important');
-        rotateButton.style.setProperty('font-size', 'medium', 'important');
-        rotateButton.onclick = PreviewModule.rotatePortal;
 
-        //Change the color of the button when you hover in and out
-        $("#rotateButton").mouseover(function(){
-          rotateButton.style.setProperty('background-color', '#FF6838', 'important');
-        });
+    //Create Rotate Button
+    var rotateButton = document.createElement('button');
+    rotateButton.innerHTML = 'Rotate';
+    rotateButton.setAttribute("id", "rotateButton");
+    $('#topDiv').append(rotateButton);
+    rotateButton.style.setProperty('background-color', '#E64A19', 'important');
+    rotateButton.style.setProperty('height', '26px', 'important');
+    rotateButton.style.setProperty('border', '0', 'important');
+    rotateButton.style.setProperty('margin', '0', 'important');
+    rotateButton.style.setProperty('color', '#FFFFFF', 'important');
+    rotateButton.style.setProperty('font-family', 'sans-serif', 'important');
+    rotateButton.style.setProperty('text-transform', 'capitalize', 'important');
+    rotateButton.style.setProperty('padding', '0px 5px', 'important');
+    rotateButton.style.setProperty('font-size', 'medium', 'important');
+    rotateButton.onclick = PreviewModule.rotatePortal;
 
-        $("#rotateButton").mouseout(function(){
-          rotateButton.style.setProperty('background-color', '#E64A19', 'important');
-        });
+    //Change the color of the button when you hover in and out
+    $("#rotateButton").mouseover(function(){
+      rotateButton.style.setProperty('background-color', '#FF6838', 'important');
+    });
+
+    $("#rotateButton").mouseout(function(){
+      rotateButton.style.setProperty('background-color', '#E64A19', 'important');
+    });
 
 
-        //Create Resize Button
-        var resizeButton = document.createElement('button');
-        resizeButton.innerHTML = 'Resize';
-        resizeButton.setAttribute("id", "resizeButton");
-        resizeButton.setAttribute("class", "btnPortal");
-        resizeButton.onclick = PreviewModule.toggleResize;
-        $('#topDiv').append(resizeButton);
-        resizeButton.style.setProperty('background-color', '#E64A19', 'important');
-        resizeButton.style.setProperty('color', '#FFFFFF', 'important');
-        resizeButton.style.setProperty('border', '0', 'important');
-        resizeButton.style.setProperty('margin', '0', 'important');
-        resizeButton.style.setProperty('text-transform', 'capitalize', 'important');
-        resizeButton.style.setProperty('font-family', 'sans-serif', 'important');
-        resizeButton.style.setProperty('height', '26px', 'important');
-        resizeButton.style.setProperty('padding', '0px 5px', 'important');
-        resizeButton.style.setProperty('font-size', 'medium', 'important');
+    //Create Resize Button
+    var resizeButton = document.createElement('button');
+    resizeButton.innerHTML = 'Resize';
+    resizeButton.setAttribute("id", "resizeButton");
+    resizeButton.setAttribute("class", "btnPortal");
+    resizeButton.onclick = PreviewModule.toggleResize;
+    $('#topDiv').append(resizeButton);
+    resizeButton.style.setProperty('background-color', '#E64A19', 'important');
+    resizeButton.style.setProperty('color', '#FFFFFF', 'important');
+    resizeButton.style.setProperty('border', '0', 'important');
+    resizeButton.style.setProperty('margin', '0', 'important');
+    resizeButton.style.setProperty('text-transform', 'capitalize', 'important');
+    resizeButton.style.setProperty('font-family', 'sans-serif', 'important');
+    resizeButton.style.setProperty('height', '26px', 'important');
+    resizeButton.style.setProperty('padding', '0px 5px', 'important');
+    resizeButton.style.setProperty('font-size', 'medium', 'important');
 
-        //Change the color of the button when you hover in and out
-        $("#resizeButton").mouseover(function(){
-          resizeButton.style.setProperty('background-color', '#FF6838', 'important');
-        });
+    //Change the color of the button when you hover in and out
+    $("#resizeButton").mouseover(function(){
+      resizeButton.style.setProperty('background-color', '#FF6838', 'important');
+    });
 
-        $("#resizeButton").mouseout(function(){
-          resizeButton.style.setProperty('background-color', '#E64A19', 'important');
-        });
+    $("#resizeButton").mouseout(function(){
+      resizeButton.style.setProperty('background-color', '#E64A19', 'important');
+    });
 
 		portalIsShowing = true;
-	}
+  }
 };
