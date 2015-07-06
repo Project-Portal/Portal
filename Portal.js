@@ -242,7 +242,7 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
 		$("#portal").css("background-color","white");
 		$("#portal").html("<iframe id = 'frame' src =" + source + "></iframe>");
 		$("#frame").width(portalSettings.defaultWidth).height(portalSettings.defaultHeight);
-		$('#frame').css({"box-shadow": "10px 10px 5px #888888"});
+		$('#frame').css({"box-shadow": "10px 10px 5px #444444"});
 
 		//Move the portal to the mouse position
 		$('#portal').css({
