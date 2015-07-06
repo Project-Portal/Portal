@@ -235,7 +235,7 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
           opacity: 0.5
     });
 
-    topDiv.css("background-color", "#03A9F4cd ");
+    topDiv.css('background-color', '#D32F2F');
 
 	  //create the portal div and the frame iFrame
 	 	$('<div/>', {id: 'portal', rel: 'external', position: 'absolute'}).appendTo('body');
@@ -268,7 +268,7 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
     rotateButton.innerHTML = 'Rotate';
     rotateButton.setAttribute("id", "rotateButton");
     $('#topDiv').append(rotateButton);
-    rotateButton.style.setProperty('background-color', '#E64A19', 'important');
+    rotateButton.style.setProperty('background-color', '#9E9E9E', 'important');
     rotateButton.style.setProperty('height', '26px', 'important');
     rotateButton.style.setProperty('border', '0', 'important');
     rotateButton.style.setProperty('margin', '0', 'important');
@@ -281,11 +281,11 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
 
     //Change the color of the button when you hover in and out
     $("#rotateButton").mouseover(function(){
-      rotateButton.style.setProperty('background-color', '#FF6838', 'important');
+      rotateButton.style.setProperty('background-color', '#B6B6B6', 'important');
     });
 
     $("#rotateButton").mouseout(function(){
-      rotateButton.style.setProperty('background-color', '#E64A19', 'important');
+      rotateButton.style.setProperty('background-color', '#9E9E9E', 'important');
     });
 
 
@@ -296,7 +296,7 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
     resizeButton.setAttribute("class", "btnPortal");
     resizeButton.onclick = PreviewModule.toggleResize;
     $('#topDiv').append(resizeButton);
-    resizeButton.style.setProperty('background-color', '#E64A19', 'important');
+    resizeButton.style.setProperty('background-color', '#9E9E9E', 'important');
     resizeButton.style.setProperty('color', '#FFFFFF', 'important');
     resizeButton.style.setProperty('border', '0', 'important');
     resizeButton.style.setProperty('margin', '0', 'important');
@@ -308,11 +308,11 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
 
     //Change the color of the button when you hover in and out
     $("#resizeButton").mouseover(function(){
-      resizeButton.style.setProperty('background-color', '#FF6838', 'important');
+      resizeButton.style.setProperty('background-color', '#B6B6B6', 'important');
     });
 
     $("#resizeButton").mouseout(function(){
-      resizeButton.style.setProperty('background-color', '#E64A19', 'important');
+      resizeButton.style.setProperty('background-color', '#9E9E9E', 'important');
     });
 
 		portalIsShowing = true;
