@@ -5,7 +5,7 @@
 //source--> the URL of the link
 
 var mouse = {x:0, y:0};
-var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $topDiv, portalKey, defaultKey
+var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $topDiv, portalKey, defaultKey, textboxInFocus
 
  PreviewModule = {
 	//various variables we may want to retrieve at any given time
@@ -54,6 +54,12 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
 			.mouseleave(function(){
 				onLink = false;
 			});
+
+      //If a textbox is in focus, don't allow a portal to be created
+      textboxInFocus = false;
+      $("input").focusin(function() {
+        textboxInFocus = true;
+      });
 		},
 
   /*
@@ -80,14 +86,15 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
 
 		// Listen for Hotkey Key press
 		$(document).keypress(function(event){
-			if(event.which ==  newHotKey.charCodeAt(0) && onLink){
+			console.log("texboxInFocus: " + textboxInFocus)
+      if(event.which ==  newHotKey.charCodeAt(0) && onLink && !textboxInFocus){
 	        	PreviewModule.putPortalAtCursor();
       }
     });
 
     // Listen for Middle Click
     $(document).on('mousedown', function(event2){
-			if(event2.which ==  2 && onLink){
+			if(event2.which ==  2 && onLink && !textboxInFocus){
         event2.preventDefault();
         window.location = $(this).attr('href');
         document.oncontextmenu = function() {
@@ -197,13 +204,13 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
 		}, 250);
 	},
 
-    listenForBarHover: function(){
-        $('#topDiv').mouseover(function() {
-            PreviewModule.showBar();
-        }).mouseleave(function() {
-            PreviewModule.hideBar();
-        })
-    },
+  listenForBarHover: function(){
+      $('#topDiv').mouseover(function() {
+          PreviewModule.showBar();
+      }).mouseleave(function() {
+          PreviewModule.hideBar();
+      })
+  },
 
 	/*
   * Creates the portal at the current location of the cursor
