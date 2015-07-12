@@ -88,6 +88,8 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
     // Listen for Middle Click
     $(document).on('mousedown', function(event2){
 			if(event2.which ==  2 && onLink){
+        event2.preventDefault();
+        window.location = $(this).attr('href');
         document.oncontextmenu = function() {
             return false;
         }
@@ -169,10 +171,10 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
 			//left: ("+=50"),
 		}, 300);
 
-        $("#topDiv").animate({
-            height: '25px',
-            width: t
-        }, 100);
+    $("#topDiv").animate({
+        height: '25px',
+        width: t
+    }, 100);
 	},
 
 	rotatePortal: function(){
