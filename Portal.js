@@ -6,6 +6,12 @@
 
 var mouse = {x:0, y:0};
 var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $topDiv, portalKey, defaultKey, textboxInFocus
+var deactivateList = ["yahoo.com"];
+
+var string_processor = function(item) {
+  console.log("Source: " + source);
+  return ((item.indexOf(source) > -1) || (source.indexOf(item) > -1));
+}
 
  PreviewModule = {
 	//various variables we may want to retrieve at any given time
@@ -62,6 +68,17 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
       });
 		},
 
+  inDeactiveList: function() {
+    new_list = deactivateList.map(string_processor)
+    for (var i=0,  tot=deactivateList.length; i < tot; i++) {
+      console.log(new_list[i]);
+      if (new_list[i]) {
+        return true;
+      }
+    }
+    return false;
+  },
+
   /*
   * Initialize the portal
   */
@@ -87,7 +104,7 @@ var portalSettings, source, portalIsShowing, newHotKey, barShowing, onLink, $top
 		// Listen for Hotkey Key press
 		$(document).keypress(function(event){
 			console.log("texboxInFocus: " + textboxInFocus)
-      if(event.which ==  newHotKey.charCodeAt(0) && onLink && !textboxInFocus){
+      if(event.which ==  newHotKey.charCodeAt(0) && onLink && !textboxInFocus && !PreviewModule.inDeactiveList()) {
 	        	PreviewModule.putPortalAtCursor();
       }
     });
