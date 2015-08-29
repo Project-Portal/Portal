@@ -110,16 +110,16 @@ var string_processor = function(item) {
     });
 
     // Listen for Middle Click
-    $(document).on('mousedown', function(event2){
-			if(event2.which ==  2 && onLink && !textboxInFocus){
-        event2.preventDefault();
-        window.location = $(this).attr('href');
-        document.oncontextmenu = function() {
-            return false;
-        }
-	      PreviewModule.putPortalAtCursor();
-      }
-    });
+    // $(document).on('mousedown', function(event2){
+		// 	if(event2.which ==  2 && onLink && !textboxInFocus){
+    //     event2.preventDefault();
+    //     window.location = $(this).attr('href');
+    //     document.oncontextmenu = function() {
+    //         return false;
+    //     }
+	  //     PreviewModule.putPortalAtCursor();
+    //   }
+    // });
 
 		// listen for when user clicks off portal to remove
     	document.addEventListener("click", function(e){
