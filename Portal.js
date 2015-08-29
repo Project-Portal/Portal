@@ -289,6 +289,15 @@ var string_processor = function(item) {
 			iframeFix: true
 		});
 
+
+        function qualifyURL( url ){
+            var img = document.createElement('img');
+            img.src = url; // set string url
+            url = img.src; // get qualified url
+            img.src = null; // no server request
+            return url;
+        }
+
     //Create Rotate Button
     var rotateButton = document.createElement('button');
     rotateButton.innerHTML = 'Rotate';
